@@ -1,0 +1,21 @@
+{
+    "name": "PluginSet.FGuiToLua.Editor",
+    "references": [
+        "PluginSet.Core",
+        "PluginSet.Core.Editor",
+        "PluginSet.FairyGUI",
+        "PluginSet.Tolua",
+        "PluginSet.Tolua.Editor",
+        "PluginSet.FGuiToLua"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}

@@ -1,0 +1,22 @@
+{
+  "name": "com.pluginset.fguitolua",
+  "displayName": "PluginSet FairyGUI-ToLua",
+  "version": "0.0.1",
+  "unity": "2018.4",
+  "description": "FairyGUI from https://www.fairygui.com/product.html.",
+  "keywords": [
+    "pluginset",
+    "fairygui",
+    "fgui",
+    "tolua"
+  ],
+  "dependencies": {
+    "com.pluginset.core": "0.0.1",
+    "com.pluginset.fairygui": "0.0.1",
+    "com.pluginset.tolua": "0.0.1"
+  },
+  "author": {
+    "name": "LyneXiao",
+    "email": "lixonxs@icloud.com"
+  }
+}

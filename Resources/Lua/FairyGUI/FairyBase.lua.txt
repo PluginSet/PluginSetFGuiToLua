@@ -1,0 +1,83 @@
+-- EventContext = FairyGUI.EventContext
+-- EventListener = FairyGUI.EventListener
+-- EventDispatcher = FairyGUI.EventDispatcher
+-- InputEvent = FairyGUI.InputEvent
+-- NTexture = FairyGUI.NTexture
+-- Container = FairyGUI.Container
+-- Image = FairyGUI.Image
+-- Stage = FairyGUI.Stage
+-- Controller = FairyGUI.Controller
+-- GObject = FairyGUI.GObject
+-- GGraph = FairyGUI.GGraph
+-- GGroup = FairyGUI.GGroup
+-- GImage = FairyGUI.GImage
+-- GLoader = FairyGUI.GLoader
+-- GMovieClip = FairyGUI.GMovieClip
+-- TextFormat = FairyGUI.TextFormat
+-- GTextField = FairyGUI.GTextField
+-- GRichTextField = FairyGUI.GRichTextField
+-- GTextInput = FairyGUI.GTextInput
+-- GComponent = FairyGUI.GComponent
+-- GList = FairyGUI.GList
+-- GRoot = FairyGUI.GRoot
+-- GLabel = FairyGUI.GLabel
+-- GButton = FairyGUI.GButton
+-- GComboBox = FairyGUI.GComboBox
+-- GProgressBar = FairyGUI.GProgressBar
+-- GSlider = FairyGUI.GSlider
+-- PopupMenu = FairyGUI.PopupMenu
+-- ScrollPane = FairyGUI.ScrollPane
+-- Transition = FairyGUI.Transition
+-- UIPackage = FairyGUI.UIPackage
+-- Window = FairyGUI.Window
+-- GObjectPool = FairyGUI.GObjectPool
+-- Relations = FairyGUI.Relations
+-- RelationType = FairyGUI.RelationType
+-- UIPanel = FairyGUI.UIPanel
+-- UIPainter = FairyGUI.UIPainter
+-- TypingEffect = FairyGUI.TypingEffect
+-- GTween = FairyGUI.GTween
+-- GTweener = FairyGUI.GTweener
+-- EaseType = FairyGUI.EaseType
+
+
+local utils = require("FairyGUI.FairyUtils")
+
+---@class UIGComponent: FairyGUI.GComponent
+---@field protected ctor function
+---@field protected OnDispose function
+UIGComponent    = utils.Component("FGUIComponent"   , FairyGUI.GComponent)
+
+---@class UIGButton: FairyGUI.GButton
+---@field protected ctor function
+---@field protected OnDispose function
+UIGButton       = utils.Component("FGUIButton"      , FairyGUI.GButton)
+
+---@class UIGLabel: FairyGUI.GLabel
+---@field protected ctor function
+---@field protected OnDispose function
+UIGLabel        = utils.Component("FGUILabel"       , FairyGUI.GLabel)
+
+---@class UIGProgressBar: FairyGUI.GProgressBar
+---@field protected ctor function
+---@field protected OnDispose function
+UIGProgressBar  = utils.Component("FGUIProgressBar" , FairyGUI.GProgressBar)
+
+---@class UIGSlider: FairyGUI.GSlider
+---@field protected ctor function
+---@field protected OnDispose function
+UIGSlider       = utils.Component("FGUISlider"      , FairyGUI.GSlider)
+
+---@class UIGComboBox: FairyGUI.GComboBox
+---@field protected ctor function
+---@field protected OnDispose function
+UIGComboBox     = utils.Component("FGUIComboBox"    , FairyGUI.GComboBox)
+
+---@class UIGImage: FairyGUI.GImage
+UIGImage        = utils.Class("FGUIImage"       , FairyGUI.GImage)
+
+---@class UIGMovieClip: FairyGUI.GMovieClip
+UIGMovieClip    = utils.Class("FGUIMovieClip"   , FairyGUI.GMovieClip)
+
+---@class UIGGroup: FairyGUI.GGroup
+UIGGroup        = utils.Class("FGUIGroup"       , FairyGUI.GGroup)
