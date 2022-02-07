@@ -35,6 +35,10 @@ namespace PluginSet.FGuiToLua.LuaWrap
 			dict.Add(typeof(PluginSet.FGuiToLua.PackageLuaLoader.LoadPackageFunc), PluginSet_FGuiToLua_PackageLuaLoader_LoadPackageFunc);
 			dict.Add(typeof(PluginSet.FGuiToLua.PackageLuaLoader.ReloadPackageFunc), PluginSet_FGuiToLua_PackageLuaLoader_ReloadPackageFunc);
 			dict.Add(typeof(PluginSet.FGuiToLua.PackageLuaLoader.ReleasePackageFunc), PluginSet_FGuiToLua_PackageLuaLoader_ReleasePackageFunc);
+			dict.Add(typeof(FairyGUI.UIObjectFactory.GTextFieldCreator), FairyGUI_UIObjectFactory_GTextFieldCreator);
+			dict.Add(typeof(FairyGUI.UIObjectFactory.GTextInputCreator), FairyGUI_UIObjectFactory_GTextInputCreator);
+			dict.Add(typeof(FairyGUI.UIObjectFactory.GRichTextFieldCreator), FairyGUI_UIObjectFactory_GRichTextFieldCreator);
+			dict.Add(typeof(PluginSet.FGUI.FairyGUIUtils.OnPackageLoadedOrUnload), PluginSet_FGUI_FairyGUIUtils_OnPackageLoadedOrUnload);
 
 			DelegateTraits<PluginSet.FGUI.UISource.LoadFunc>.Init(PluginSet_FGUI_UISource_LoadFunc);
 			DelegateTraits<FairyGUI.EventCallback1>.Init(FairyGUI_EventCallback1);
@@ -60,6 +64,10 @@ namespace PluginSet.FGuiToLua.LuaWrap
 			DelegateTraits<PluginSet.FGuiToLua.PackageLuaLoader.LoadPackageFunc>.Init(PluginSet_FGuiToLua_PackageLuaLoader_LoadPackageFunc);
 			DelegateTraits<PluginSet.FGuiToLua.PackageLuaLoader.ReloadPackageFunc>.Init(PluginSet_FGuiToLua_PackageLuaLoader_ReloadPackageFunc);
 			DelegateTraits<PluginSet.FGuiToLua.PackageLuaLoader.ReleasePackageFunc>.Init(PluginSet_FGuiToLua_PackageLuaLoader_ReleasePackageFunc);
+			DelegateTraits<FairyGUI.UIObjectFactory.GTextFieldCreator>.Init(FairyGUI_UIObjectFactory_GTextFieldCreator);
+			DelegateTraits<FairyGUI.UIObjectFactory.GTextInputCreator>.Init(FairyGUI_UIObjectFactory_GTextInputCreator);
+			DelegateTraits<FairyGUI.UIObjectFactory.GRichTextFieldCreator>.Init(FairyGUI_UIObjectFactory_GRichTextFieldCreator);
+			DelegateTraits<PluginSet.FGUI.FairyGUIUtils.OnPackageLoadedOrUnload>.Init(PluginSet_FGUI_FairyGUIUtils_OnPackageLoadedOrUnload);
 
 			TypeTraits<PluginSet.FGUI.UISource.LoadFunc>.Init(Check_PluginSet_FGUI_UISource_LoadFunc);
 			TypeTraits<FairyGUI.EventCallback1>.Init(Check_FairyGUI_EventCallback1);
@@ -85,6 +93,10 @@ namespace PluginSet.FGuiToLua.LuaWrap
 			TypeTraits<PluginSet.FGuiToLua.PackageLuaLoader.LoadPackageFunc>.Init(Check_PluginSet_FGuiToLua_PackageLuaLoader_LoadPackageFunc);
 			TypeTraits<PluginSet.FGuiToLua.PackageLuaLoader.ReloadPackageFunc>.Init(Check_PluginSet_FGuiToLua_PackageLuaLoader_ReloadPackageFunc);
 			TypeTraits<PluginSet.FGuiToLua.PackageLuaLoader.ReleasePackageFunc>.Init(Check_PluginSet_FGuiToLua_PackageLuaLoader_ReleasePackageFunc);
+			TypeTraits<FairyGUI.UIObjectFactory.GTextFieldCreator>.Init(Check_FairyGUI_UIObjectFactory_GTextFieldCreator);
+			TypeTraits<FairyGUI.UIObjectFactory.GTextInputCreator>.Init(Check_FairyGUI_UIObjectFactory_GTextInputCreator);
+			TypeTraits<FairyGUI.UIObjectFactory.GRichTextFieldCreator>.Init(Check_FairyGUI_UIObjectFactory_GRichTextFieldCreator);
+			TypeTraits<PluginSet.FGUI.FairyGUIUtils.OnPackageLoadedOrUnload>.Init(Check_PluginSet_FGUI_FairyGUIUtils_OnPackageLoadedOrUnload);
 
 			StackTraits<PluginSet.FGUI.UISource.LoadFunc>.Push = Push_PluginSet_FGUI_UISource_LoadFunc;
 			StackTraits<FairyGUI.EventCallback1>.Push = Push_FairyGUI_EventCallback1;
@@ -110,6 +122,10 @@ namespace PluginSet.FGuiToLua.LuaWrap
 			StackTraits<PluginSet.FGuiToLua.PackageLuaLoader.LoadPackageFunc>.Push = Push_PluginSet_FGuiToLua_PackageLuaLoader_LoadPackageFunc;
 			StackTraits<PluginSet.FGuiToLua.PackageLuaLoader.ReloadPackageFunc>.Push = Push_PluginSet_FGuiToLua_PackageLuaLoader_ReloadPackageFunc;
 			StackTraits<PluginSet.FGuiToLua.PackageLuaLoader.ReleasePackageFunc>.Push = Push_PluginSet_FGuiToLua_PackageLuaLoader_ReleasePackageFunc;
+			StackTraits<FairyGUI.UIObjectFactory.GTextFieldCreator>.Push = Push_FairyGUI_UIObjectFactory_GTextFieldCreator;
+			StackTraits<FairyGUI.UIObjectFactory.GTextInputCreator>.Push = Push_FairyGUI_UIObjectFactory_GTextInputCreator;
+			StackTraits<FairyGUI.UIObjectFactory.GRichTextFieldCreator>.Push = Push_FairyGUI_UIObjectFactory_GRichTextFieldCreator;
+			StackTraits<PluginSet.FGUI.FairyGUIUtils.OnPackageLoadedOrUnload>.Push = Push_PluginSet_FGUI_FairyGUIUtils_OnPackageLoadedOrUnload;
 		}
 		class PluginSet_FGUI_UISource_LoadFunc_Event : LuaDelegate
 		{
@@ -1451,19 +1467,21 @@ namespace PluginSet.FGuiToLua.LuaWrap
 			public PluginSet_FGuiToLua_PackageLuaLoader_ReleasePackageFunc_Event(LuaFunction func) : base(func) { }
 			public PluginSet_FGuiToLua_PackageLuaLoader_ReleasePackageFunc_Event(LuaFunction func, LuaTable self) : base(func, self) { }
 
-			public void Call(FairyGUI.UIPackage param0)
+			public void Call(FairyGUI.UIPackage param0, bool param1)
 			{
 				func.BeginPCall();
 				func.PushObject(param0);
+				func.Push(param1);
 				func.PCall();
 				func.EndPCall();
 			}
 
-			public void CallWithSelf(FairyGUI.UIPackage param0)
+			public void CallWithSelf(FairyGUI.UIPackage param0, bool param1)
 			{
 				func.BeginPCall();
 				func.Push(self);
 				func.PushObject(param0);
+				func.Push(param1);
 				func.PCall();
 				func.EndPCall();
 			}
@@ -1473,7 +1491,7 @@ namespace PluginSet.FGuiToLua.LuaWrap
 		{
 			if (func == null)
 			{
-				PluginSet.FGuiToLua.PackageLuaLoader.ReleasePackageFunc fn = delegate(FairyGUI.UIPackage param0) { };
+				PluginSet.FGuiToLua.PackageLuaLoader.ReleasePackageFunc fn = delegate(FairyGUI.UIPackage param0, bool param1) { };
 				return fn;
 			}
 
@@ -1499,6 +1517,240 @@ namespace PluginSet.FGuiToLua.LuaWrap
 		}
 
 		void Push_PluginSet_FGuiToLua_PackageLuaLoader_ReleasePackageFunc(IntPtr L, PluginSet.FGuiToLua.PackageLuaLoader.ReleasePackageFunc o)
+		{
+			ToLua.Push(L, o);
+		}
+
+		class FairyGUI_UIObjectFactory_GTextFieldCreator_Event : LuaDelegate
+		{
+			public FairyGUI_UIObjectFactory_GTextFieldCreator_Event(LuaFunction func) : base(func) { }
+			public FairyGUI_UIObjectFactory_GTextFieldCreator_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+			public FairyGUI.GTextField Call()
+			{
+				func.BeginPCall();
+				func.PCall();
+				FairyGUI.GTextField ret = (FairyGUI.GTextField)func.CheckObject(typeof(FairyGUI.GTextField));
+				func.EndPCall();
+				return ret;
+			}
+
+			public FairyGUI.GTextField CallWithSelf()
+			{
+				func.BeginPCall();
+				func.Push(self);
+				func.PCall();
+				FairyGUI.GTextField ret = (FairyGUI.GTextField)func.CheckObject(typeof(FairyGUI.GTextField));
+				func.EndPCall();
+				return ret;
+			}
+		}
+
+		public FairyGUI.UIObjectFactory.GTextFieldCreator FairyGUI_UIObjectFactory_GTextFieldCreator(LuaFunction func, LuaTable self, bool flag)
+		{
+			if (func == null)
+			{
+				FairyGUI.UIObjectFactory.GTextFieldCreator fn = delegate() { return null; };
+				return fn;
+			}
+
+			if(!flag)
+			{
+				FairyGUI_UIObjectFactory_GTextFieldCreator_Event target = new FairyGUI_UIObjectFactory_GTextFieldCreator_Event(func);
+				FairyGUI.UIObjectFactory.GTextFieldCreator d = target.Call;
+				target.method = d.Method;
+				return d;
+			}
+			else
+			{
+				FairyGUI_UIObjectFactory_GTextFieldCreator_Event target = new FairyGUI_UIObjectFactory_GTextFieldCreator_Event(func, self);
+				FairyGUI.UIObjectFactory.GTextFieldCreator d = target.CallWithSelf;
+				target.method = d.Method;
+				return d;
+			}
+		}
+
+		bool Check_FairyGUI_UIObjectFactory_GTextFieldCreator(IntPtr L, int pos)
+		{
+			return TypeChecker.CheckDelegateType(typeof(FairyGUI.UIObjectFactory.GTextFieldCreator), L, pos);
+		}
+
+		void Push_FairyGUI_UIObjectFactory_GTextFieldCreator(IntPtr L, FairyGUI.UIObjectFactory.GTextFieldCreator o)
+		{
+			ToLua.Push(L, o);
+		}
+
+		class FairyGUI_UIObjectFactory_GTextInputCreator_Event : LuaDelegate
+		{
+			public FairyGUI_UIObjectFactory_GTextInputCreator_Event(LuaFunction func) : base(func) { }
+			public FairyGUI_UIObjectFactory_GTextInputCreator_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+			public FairyGUI.GTextInput Call()
+			{
+				func.BeginPCall();
+				func.PCall();
+				FairyGUI.GTextInput ret = (FairyGUI.GTextInput)func.CheckObject(typeof(FairyGUI.GTextInput));
+				func.EndPCall();
+				return ret;
+			}
+
+			public FairyGUI.GTextInput CallWithSelf()
+			{
+				func.BeginPCall();
+				func.Push(self);
+				func.PCall();
+				FairyGUI.GTextInput ret = (FairyGUI.GTextInput)func.CheckObject(typeof(FairyGUI.GTextInput));
+				func.EndPCall();
+				return ret;
+			}
+		}
+
+		public FairyGUI.UIObjectFactory.GTextInputCreator FairyGUI_UIObjectFactory_GTextInputCreator(LuaFunction func, LuaTable self, bool flag)
+		{
+			if (func == null)
+			{
+				FairyGUI.UIObjectFactory.GTextInputCreator fn = delegate() { return null; };
+				return fn;
+			}
+
+			if(!flag)
+			{
+				FairyGUI_UIObjectFactory_GTextInputCreator_Event target = new FairyGUI_UIObjectFactory_GTextInputCreator_Event(func);
+				FairyGUI.UIObjectFactory.GTextInputCreator d = target.Call;
+				target.method = d.Method;
+				return d;
+			}
+			else
+			{
+				FairyGUI_UIObjectFactory_GTextInputCreator_Event target = new FairyGUI_UIObjectFactory_GTextInputCreator_Event(func, self);
+				FairyGUI.UIObjectFactory.GTextInputCreator d = target.CallWithSelf;
+				target.method = d.Method;
+				return d;
+			}
+		}
+
+		bool Check_FairyGUI_UIObjectFactory_GTextInputCreator(IntPtr L, int pos)
+		{
+			return TypeChecker.CheckDelegateType(typeof(FairyGUI.UIObjectFactory.GTextInputCreator), L, pos);
+		}
+
+		void Push_FairyGUI_UIObjectFactory_GTextInputCreator(IntPtr L, FairyGUI.UIObjectFactory.GTextInputCreator o)
+		{
+			ToLua.Push(L, o);
+		}
+
+		class FairyGUI_UIObjectFactory_GRichTextFieldCreator_Event : LuaDelegate
+		{
+			public FairyGUI_UIObjectFactory_GRichTextFieldCreator_Event(LuaFunction func) : base(func) { }
+			public FairyGUI_UIObjectFactory_GRichTextFieldCreator_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+			public FairyGUI.GRichTextField Call()
+			{
+				func.BeginPCall();
+				func.PCall();
+				FairyGUI.GRichTextField ret = (FairyGUI.GRichTextField)func.CheckObject(typeof(FairyGUI.GRichTextField));
+				func.EndPCall();
+				return ret;
+			}
+
+			public FairyGUI.GRichTextField CallWithSelf()
+			{
+				func.BeginPCall();
+				func.Push(self);
+				func.PCall();
+				FairyGUI.GRichTextField ret = (FairyGUI.GRichTextField)func.CheckObject(typeof(FairyGUI.GRichTextField));
+				func.EndPCall();
+				return ret;
+			}
+		}
+
+		public FairyGUI.UIObjectFactory.GRichTextFieldCreator FairyGUI_UIObjectFactory_GRichTextFieldCreator(LuaFunction func, LuaTable self, bool flag)
+		{
+			if (func == null)
+			{
+				FairyGUI.UIObjectFactory.GRichTextFieldCreator fn = delegate() { return null; };
+				return fn;
+			}
+
+			if(!flag)
+			{
+				FairyGUI_UIObjectFactory_GRichTextFieldCreator_Event target = new FairyGUI_UIObjectFactory_GRichTextFieldCreator_Event(func);
+				FairyGUI.UIObjectFactory.GRichTextFieldCreator d = target.Call;
+				target.method = d.Method;
+				return d;
+			}
+			else
+			{
+				FairyGUI_UIObjectFactory_GRichTextFieldCreator_Event target = new FairyGUI_UIObjectFactory_GRichTextFieldCreator_Event(func, self);
+				FairyGUI.UIObjectFactory.GRichTextFieldCreator d = target.CallWithSelf;
+				target.method = d.Method;
+				return d;
+			}
+		}
+
+		bool Check_FairyGUI_UIObjectFactory_GRichTextFieldCreator(IntPtr L, int pos)
+		{
+			return TypeChecker.CheckDelegateType(typeof(FairyGUI.UIObjectFactory.GRichTextFieldCreator), L, pos);
+		}
+
+		void Push_FairyGUI_UIObjectFactory_GRichTextFieldCreator(IntPtr L, FairyGUI.UIObjectFactory.GRichTextFieldCreator o)
+		{
+			ToLua.Push(L, o);
+		}
+
+		class PluginSet_FGUI_FairyGUIUtils_OnPackageLoadedOrUnload_Event : LuaDelegate
+		{
+			public PluginSet_FGUI_FairyGUIUtils_OnPackageLoadedOrUnload_Event(LuaFunction func) : base(func) { }
+			public PluginSet_FGUI_FairyGUIUtils_OnPackageLoadedOrUnload_Event(LuaFunction func, LuaTable self) : base(func, self) { }
+
+			public void Call(string param0)
+			{
+				func.BeginPCall();
+				func.Push(param0);
+				func.PCall();
+				func.EndPCall();
+			}
+
+			public void CallWithSelf(string param0)
+			{
+				func.BeginPCall();
+				func.Push(self);
+				func.Push(param0);
+				func.PCall();
+				func.EndPCall();
+			}
+		}
+
+		public PluginSet.FGUI.FairyGUIUtils.OnPackageLoadedOrUnload PluginSet_FGUI_FairyGUIUtils_OnPackageLoadedOrUnload(LuaFunction func, LuaTable self, bool flag)
+		{
+			if (func == null)
+			{
+				PluginSet.FGUI.FairyGUIUtils.OnPackageLoadedOrUnload fn = delegate(string param0) { };
+				return fn;
+			}
+
+			if(!flag)
+			{
+				PluginSet_FGUI_FairyGUIUtils_OnPackageLoadedOrUnload_Event target = new PluginSet_FGUI_FairyGUIUtils_OnPackageLoadedOrUnload_Event(func);
+				PluginSet.FGUI.FairyGUIUtils.OnPackageLoadedOrUnload d = target.Call;
+				target.method = d.Method;
+				return d;
+			}
+			else
+			{
+				PluginSet_FGUI_FairyGUIUtils_OnPackageLoadedOrUnload_Event target = new PluginSet_FGUI_FairyGUIUtils_OnPackageLoadedOrUnload_Event(func, self);
+				PluginSet.FGUI.FairyGUIUtils.OnPackageLoadedOrUnload d = target.CallWithSelf;
+				target.method = d.Method;
+				return d;
+			}
+		}
+
+		bool Check_PluginSet_FGUI_FairyGUIUtils_OnPackageLoadedOrUnload(IntPtr L, int pos)
+		{
+			return TypeChecker.CheckDelegateType(typeof(PluginSet.FGUI.FairyGUIUtils.OnPackageLoadedOrUnload), L, pos);
+		}
+
+		void Push_PluginSet_FGUI_FairyGUIUtils_OnPackageLoadedOrUnload(IntPtr L, PluginSet.FGUI.FairyGUIUtils.OnPackageLoadedOrUnload o)
 		{
 			ToLua.Push(L, o);
 		}

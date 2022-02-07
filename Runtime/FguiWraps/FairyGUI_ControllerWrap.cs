@@ -3,6 +3,7 @@
 using System;
 using LuaInterface;
 
+#pragma warning disable 618
 namespace PluginSet.FGuiToLua.LuaWrap
 {
 public class FairyGUI_ControllerWrap

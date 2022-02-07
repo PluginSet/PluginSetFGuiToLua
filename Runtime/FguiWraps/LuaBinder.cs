@@ -81,6 +81,9 @@ namespace PluginSet.FGuiToLua.LuaWrap
 			L.RegFunction("GComponentCreator", FairyGUI_UIObjectFactory_GComponentCreator);
 			L.RegFunction("GLoaderCreator", FairyGUI_UIObjectFactory_GLoaderCreator);
 			L.RegFunction("GLoader3DCreator", FairyGUI_UIObjectFactory_GLoader3DCreator);
+			L.RegFunction("GTextFieldCreator", FairyGUI_UIObjectFactory_GTextFieldCreator);
+			L.RegFunction("GTextInputCreator", FairyGUI_UIObjectFactory_GTextInputCreator);
+			L.RegFunction("GRichTextFieldCreator", FairyGUI_UIObjectFactory_GRichTextFieldCreator);
 			L.EndModule();
 			L.EndModule();
 			L.BeginModule("PluginSet");
@@ -98,6 +101,9 @@ namespace PluginSet.FGuiToLua.LuaWrap
 			PluginSet_FGUI_GCustomLoader3DWrap.Register(L);
 			L.BeginModule("UISource");
 			L.RegFunction("LoadFunc", PluginSet_FGUI_UISource_LoadFunc);
+			L.EndModule();
+			L.BeginModule("FairyGUIUtils");
+			L.RegFunction("OnPackageLoadedOrUnload", PluginSet_FGUI_FairyGUIUtils_OnPackageLoadedOrUnload);
 			L.EndModule();
 			L.EndModule();
 			L.BeginModule("FGuiToLua");
@@ -579,6 +585,87 @@ namespace PluginSet.FGuiToLua.LuaWrap
 		}
 
 		[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+		static int FairyGUI_UIObjectFactory_GTextFieldCreator(IntPtr L)
+		{
+			try
+			{
+				int count = LuaDLL.lua_gettop(L);
+				LuaFunction func = ToLua.CheckLuaFunction(L, 1);
+
+				if (count == 1)
+				{
+					Delegate arg1 = DelegateTraits<FairyGUI.UIObjectFactory.GTextFieldCreator>.Create(func);
+					ToLua.Push(L, arg1);
+				}
+				else
+				{
+					LuaTable self = ToLua.CheckLuaTable(L, 2);
+					Delegate arg1 = DelegateTraits<FairyGUI.UIObjectFactory.GTextFieldCreator>.Create(func, self);
+					ToLua.Push(L, arg1);
+				}
+				return 1;
+			}
+			catch(Exception e)
+			{
+				return LuaDLL.toluaL_exception(L, e);
+			}
+		}
+
+		[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+		static int FairyGUI_UIObjectFactory_GTextInputCreator(IntPtr L)
+		{
+			try
+			{
+				int count = LuaDLL.lua_gettop(L);
+				LuaFunction func = ToLua.CheckLuaFunction(L, 1);
+
+				if (count == 1)
+				{
+					Delegate arg1 = DelegateTraits<FairyGUI.UIObjectFactory.GTextInputCreator>.Create(func);
+					ToLua.Push(L, arg1);
+				}
+				else
+				{
+					LuaTable self = ToLua.CheckLuaTable(L, 2);
+					Delegate arg1 = DelegateTraits<FairyGUI.UIObjectFactory.GTextInputCreator>.Create(func, self);
+					ToLua.Push(L, arg1);
+				}
+				return 1;
+			}
+			catch(Exception e)
+			{
+				return LuaDLL.toluaL_exception(L, e);
+			}
+		}
+
+		[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+		static int FairyGUI_UIObjectFactory_GRichTextFieldCreator(IntPtr L)
+		{
+			try
+			{
+				int count = LuaDLL.lua_gettop(L);
+				LuaFunction func = ToLua.CheckLuaFunction(L, 1);
+
+				if (count == 1)
+				{
+					Delegate arg1 = DelegateTraits<FairyGUI.UIObjectFactory.GRichTextFieldCreator>.Create(func);
+					ToLua.Push(L, arg1);
+				}
+				else
+				{
+					LuaTable self = ToLua.CheckLuaTable(L, 2);
+					Delegate arg1 = DelegateTraits<FairyGUI.UIObjectFactory.GRichTextFieldCreator>.Create(func, self);
+					ToLua.Push(L, arg1);
+				}
+				return 1;
+			}
+			catch(Exception e)
+			{
+				return LuaDLL.toluaL_exception(L, e);
+			}
+		}
+
+		[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 		static int PluginSet_FGUI_UISource_LoadFunc(IntPtr L)
 		{
 			try
@@ -595,6 +682,33 @@ namespace PluginSet.FGuiToLua.LuaWrap
 				{
 					LuaTable self = ToLua.CheckLuaTable(L, 2);
 					Delegate arg1 = DelegateTraits<PluginSet.FGUI.UISource.LoadFunc>.Create(func, self);
+					ToLua.Push(L, arg1);
+				}
+				return 1;
+			}
+			catch(Exception e)
+			{
+				return LuaDLL.toluaL_exception(L, e);
+			}
+		}
+
+		[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+		static int PluginSet_FGUI_FairyGUIUtils_OnPackageLoadedOrUnload(IntPtr L)
+		{
+			try
+			{
+				int count = LuaDLL.lua_gettop(L);
+				LuaFunction func = ToLua.CheckLuaFunction(L, 1);
+
+				if (count == 1)
+				{
+					Delegate arg1 = DelegateTraits<PluginSet.FGUI.FairyGUIUtils.OnPackageLoadedOrUnload>.Create(func);
+					ToLua.Push(L, arg1);
+				}
+				else
+				{
+					LuaTable self = ToLua.CheckLuaTable(L, 2);
+					Delegate arg1 = DelegateTraits<PluginSet.FGUI.FairyGUIUtils.OnPackageLoadedOrUnload>.Create(func, self);
 					ToLua.Push(L, arg1);
 				}
 				return 1;

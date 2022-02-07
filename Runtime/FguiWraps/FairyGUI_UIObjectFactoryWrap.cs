@@ -3,6 +3,7 @@
 using System;
 using LuaInterface;
 
+#pragma warning disable 618
 namespace PluginSet.FGuiToLua.LuaWrap
 {
 public class FairyGUI_UIObjectFactoryWrap
@@ -13,13 +14,20 @@ public class FairyGUI_UIObjectFactoryWrap
 		L.RegFunction("SetPackageItemExtension", SetPackageItemExtension);
 		L.RegFunction("SetExtension", SetExtension);
 		L.RegFunction("SetLoaderExtension", SetLoaderExtension);
+		L.RegFunction("SetTextFieldExtension", SetTextFieldExtension);
+		L.RegFunction("SetTextInputExtension", SetTextInputExtension);
+		L.RegFunction("SetRichTextFieldExtension", SetRichTextFieldExtension);
 		L.RegFunction("SetLoader3DExtension", SetLoader3DExtension);
+		L.RegFunction("ClearExtension", ClearExtension);
 		L.RegFunction("Clear", Clear);
 		L.RegFunction("NewObject", NewObject);
 		L.RegFunction("New", _CreateFairyGUI_UIObjectFactory);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.RegFunction("GComponentCreator", FairyGUI_UIObjectFactory_GComponentCreator);
 		L.RegFunction("GLoaderCreator", FairyGUI_UIObjectFactory_GLoaderCreator);
+		L.RegFunction("GTextFieldCreator", FairyGUI_UIObjectFactory_GTextFieldCreator);
+		L.RegFunction("GTextInputCreator", FairyGUI_UIObjectFactory_GTextInputCreator);
+		L.RegFunction("GRichTextFieldCreator", FairyGUI_UIObjectFactory_GRichTextFieldCreator);
 		L.RegFunction("GLoader3DCreator", FairyGUI_UIObjectFactory_GLoader3DCreator);
 		L.EndClass();
 	}
@@ -129,6 +137,96 @@ public class FairyGUI_UIObjectFactoryWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int SetTextFieldExtension(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 1 && TypeChecker.CheckTypes<System.Type>(L, 1))
+			{
+				System.Type arg0 = (System.Type)ToLua.ToObject(L, 1);
+				FairyGUI.UIObjectFactory.SetTextFieldExtension(arg0);
+				return 0;
+			}
+			else if (count == 1 && TypeChecker.CheckTypes<FairyGUI.UIObjectFactory.GTextFieldCreator>(L, 1))
+			{
+				FairyGUI.UIObjectFactory.GTextFieldCreator arg0 = (FairyGUI.UIObjectFactory.GTextFieldCreator)ToLua.ToObject(L, 1);
+				FairyGUI.UIObjectFactory.SetTextFieldExtension(arg0);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: FairyGUI.UIObjectFactory.SetTextFieldExtension");
+			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int SetTextInputExtension(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 1 && TypeChecker.CheckTypes<System.Type>(L, 1))
+			{
+				System.Type arg0 = (System.Type)ToLua.ToObject(L, 1);
+				FairyGUI.UIObjectFactory.SetTextInputExtension(arg0);
+				return 0;
+			}
+			else if (count == 1 && TypeChecker.CheckTypes<FairyGUI.UIObjectFactory.GTextInputCreator>(L, 1))
+			{
+				FairyGUI.UIObjectFactory.GTextInputCreator arg0 = (FairyGUI.UIObjectFactory.GTextInputCreator)ToLua.ToObject(L, 1);
+				FairyGUI.UIObjectFactory.SetTextInputExtension(arg0);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: FairyGUI.UIObjectFactory.SetTextInputExtension");
+			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int SetRichTextFieldExtension(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 1 && TypeChecker.CheckTypes<System.Type>(L, 1))
+			{
+				System.Type arg0 = (System.Type)ToLua.ToObject(L, 1);
+				FairyGUI.UIObjectFactory.SetRichTextFieldExtension(arg0);
+				return 0;
+			}
+			else if (count == 1 && TypeChecker.CheckTypes<FairyGUI.UIObjectFactory.GRichTextFieldCreator>(L, 1))
+			{
+				FairyGUI.UIObjectFactory.GRichTextFieldCreator arg0 = (FairyGUI.UIObjectFactory.GRichTextFieldCreator)ToLua.ToObject(L, 1);
+				FairyGUI.UIObjectFactory.SetRichTextFieldExtension(arg0);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: FairyGUI.UIObjectFactory.SetRichTextFieldExtension");
+			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int SetLoader3DExtension(IntPtr L)
 	{
 		try
@@ -151,6 +249,22 @@ public class FairyGUI_UIObjectFactoryWrap
 			{
 				return LuaDLL.luaL_throw(L, "invalid arguments to method: FairyGUI.UIObjectFactory.SetLoader3DExtension");
 			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int ClearExtension(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			string arg0 = ToLua.CheckString(L, 1);
+			FairyGUI.UIObjectFactory.ClearExtension(arg0);
+			return 0;
 		}
 		catch (Exception e)
 		{
@@ -257,6 +371,87 @@ public class FairyGUI_UIObjectFactoryWrap
 				{
 					LuaTable self = ToLua.CheckLuaTable(L, 2);
 					Delegate arg1 = DelegateTraits<FairyGUI.UIObjectFactory.GLoaderCreator>.Create(func, self);
+					ToLua.Push(L, arg1);
+				}
+				return 1;
+			}
+			catch(Exception e)
+			{
+				return LuaDLL.toluaL_exception(L, e);
+			}
+		}
+
+		[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+		static int FairyGUI_UIObjectFactory_GTextFieldCreator(IntPtr L)
+		{
+			try
+			{
+				int count = LuaDLL.lua_gettop(L);
+				LuaFunction func = ToLua.CheckLuaFunction(L, 1);
+
+				if (count == 1)
+				{
+					Delegate arg1 = DelegateTraits<FairyGUI.UIObjectFactory.GTextFieldCreator>.Create(func);
+					ToLua.Push(L, arg1);
+				}
+				else
+				{
+					LuaTable self = ToLua.CheckLuaTable(L, 2);
+					Delegate arg1 = DelegateTraits<FairyGUI.UIObjectFactory.GTextFieldCreator>.Create(func, self);
+					ToLua.Push(L, arg1);
+				}
+				return 1;
+			}
+			catch(Exception e)
+			{
+				return LuaDLL.toluaL_exception(L, e);
+			}
+		}
+
+		[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+		static int FairyGUI_UIObjectFactory_GTextInputCreator(IntPtr L)
+		{
+			try
+			{
+				int count = LuaDLL.lua_gettop(L);
+				LuaFunction func = ToLua.CheckLuaFunction(L, 1);
+
+				if (count == 1)
+				{
+					Delegate arg1 = DelegateTraits<FairyGUI.UIObjectFactory.GTextInputCreator>.Create(func);
+					ToLua.Push(L, arg1);
+				}
+				else
+				{
+					LuaTable self = ToLua.CheckLuaTable(L, 2);
+					Delegate arg1 = DelegateTraits<FairyGUI.UIObjectFactory.GTextInputCreator>.Create(func, self);
+					ToLua.Push(L, arg1);
+				}
+				return 1;
+			}
+			catch(Exception e)
+			{
+				return LuaDLL.toluaL_exception(L, e);
+			}
+		}
+
+		[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+		static int FairyGUI_UIObjectFactory_GRichTextFieldCreator(IntPtr L)
+		{
+			try
+			{
+				int count = LuaDLL.lua_gettop(L);
+				LuaFunction func = ToLua.CheckLuaFunction(L, 1);
+
+				if (count == 1)
+				{
+					Delegate arg1 = DelegateTraits<FairyGUI.UIObjectFactory.GRichTextFieldCreator>.Create(func);
+					ToLua.Push(L, arg1);
+				}
+				else
+				{
+					LuaTable self = ToLua.CheckLuaTable(L, 2);
+					Delegate arg1 = DelegateTraits<FairyGUI.UIObjectFactory.GRichTextFieldCreator>.Create(func, self);
 					ToLua.Push(L, arg1);
 				}
 				return 1;

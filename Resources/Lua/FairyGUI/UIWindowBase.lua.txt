@@ -87,6 +87,11 @@ function UIWindowBase:BeforeCreate()
     
 end
 
+---@overload 界面加载完成且被加入舞台，播放开启动画之前调用
+function UIWindowBase:BeforeShown()
+    
+end
+
 ---播放关闭动画之前调用，移除实例
 function UIWindowBase:BeforeHide()
     removeWindowInstance(self)
@@ -117,6 +122,8 @@ function UIWindowBase:OnDispose()
     removeWindowInstance(self)
     self:StopDelayCloseTimer()
     self:OnDestroy()
+    --self.contentPane:Dispose()
+    --self.contentPane = nil
 end
 
 -- 增加对象 target 的 onClick 事件监听，当 obj 为空时，默认为 self

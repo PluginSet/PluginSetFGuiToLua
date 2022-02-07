@@ -33,7 +33,12 @@ function fguiUtils.Class(name, base)
         bindedUrls[url] = self
         FairyGUI.UIObjectFactory.SetExtension(url, typeof(self.base), function (ins) return self:Bridge(ins) end)
     end
-
+    
+    function cls:Unbind(url)
+        bindedUrls[url] = nil
+        FairyGUI.UIObjectFactory.ClearExtension(url)
+    end
+    
     return cls
 end
 
@@ -76,6 +81,14 @@ function fguiUtils.Component(name, base)
         end
 
         self:Bind(self.URL)
+    end
+    
+    function cls:BindSelf()
+        self:Bind(self.URL)
+    end
+    
+    function cls:UnbindSelf()
+        self:Unbind(self.URL)
     end
 
     --- object function

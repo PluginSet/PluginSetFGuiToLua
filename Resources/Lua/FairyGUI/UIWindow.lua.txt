@@ -60,7 +60,7 @@ end
 ---BeforeCreate 创建组件前需先确定所有扩展已绑定
 ---@protected
 function UIWindow:BeforeCreate()
-    self.m_cmpCls:InitBinders()
+    --self.m_cmpCls:InitBinders()
 end
 
 ---OnInit 创建组件之后，界面打开之间会调用该方法，可在该方法中进行初始化操作

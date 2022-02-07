@@ -10,7 +10,7 @@ namespace PluginSet.FGuiToLua
         public delegate AsyncOperationHandle PreparePackageFunc(string packageName);
         public delegate UIPackage LoadPackageFunc(string packageName);
         public delegate void ReloadPackageFunc(UIPackage package);
-        public delegate void ReleasePackageFunc(UIPackage package);
+        public delegate void ReleasePackageFunc(UIPackage package, bool remove = false);
 
         private PreparePackageFunc _preparePackageFunc;
         private LoadPackageFunc _loadPackageFunc;
@@ -56,9 +56,9 @@ namespace PluginSet.FGuiToLua
         }
 
         [NoToLua]
-        public void ReleasePackage(UIPackage package)
+        public void ReleasePackage(UIPackage package, bool remove = false)
         {
-            _releasePackageFunc?.Invoke(package);
+            _releasePackageFunc?.Invoke(package, remove);
         }
     }
 }

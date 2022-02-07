@@ -10,3 +10,64 @@ require("FairyGUI.FairyBase")
 function InitFairy()
     print("InitFairy ==================================")
 end
+
+---@alias PackageLoadedOrUnloadHandle fun(packageName:string):void
+
+---@type PackageLoadedOrUnloadHandle[]
+local packagedLoadedHandlers = {}
+
+---@type PackageLoadedOrUnloadHandle[]
+local packagedUnloadHandlers = {}
+
+---@param packageName string
+function OnFairyPackageLoaded(packageName)
+    for _, fun in ipairs(packagedLoadedHandlers) do
+        fun(packageName)
+    end
+end
+
+---@param packageName string
+function OnFairyPackageUnload(packageName)
+    for _, fun in ipairs(packagedUnloadHandlers) do
+        fun(packageName)
+    end
+end
+
+---AddFairyPackageLoadedHandle
+---@param handle PackageLoadedOrUnloadHandle
+function AddFairyPackageLoadedHandle(handle)
+    table.insert(packagedLoadedHandlers, handle)
+    local loadedPackages = FairyGUI.UIPackage.GetPackages()
+    local count = loadedPackages.Count
+    if count <= 0 then return end
+    for i = 0, count - 1 do
+        local pkg = loadedPackages[i]
+        handle(pkg.name)
+    end
+end
+
+---RemoveFairyPackageLoadedHandle
+---@param handle PackageLoadedOrUnloadHandle
+function RemoveFairyPackageLoadedHandle(handle)
+    for i = #packagedLoadedHandlers, 1, -1 do
+        if packagedLoadedHandlers[i] == handle then
+            return table.remove(packagedLoadedHandlers, i)
+        end
+    end
+end
+
+---AddFairyPackageUnloadHandle
+---@param handle PackageLoadedOrUnloadHandle
+function AddFairyPackageUnloadHandle(handle)
+    table.insert(packagedUnloadHandlers, handle)
+end
+
+---RemoveFairyPackageUnloadHandle
+---@param handle PackageLoadedOrUnloadHandle
+function RemoveFairyPackageUnloadHandle(handle)
+    for i = #packagedUnloadHandlers, 1, -1 do
+        if packagedUnloadHandlers[i] == handle then
+            return table.remove(packagedUnloadHandlers, i)
+        end
+    end
+end

@@ -3,6 +3,7 @@
 using System;
 using LuaInterface;
 
+#pragma warning disable 618
 namespace PluginSet.FGuiToLua.LuaWrap
 {
 public class PluginSet_FGUI_FairyGUIUtilsWrap
@@ -10,6 +11,9 @@ public class PluginSet_FGUI_FairyGUIUtilsWrap
 	public static void Register(LuaState L)
 	{
 		L.BeginStaticLibs("FairyGUIUtils");
+		L.RegFunction("AddOnBranchChange", AddOnBranchChange);
+		L.RegFunction("RemoveOnBranchChange", RemoveOnBranchChange);
+		L.RegFunction("RemoveBranchChange", RemoveBranchChange);
 		L.RegFunction("SetPackageLoad", SetPackageLoad);
 		L.RegFunction("CreatePackageSource", CreatePackageSource);
 		L.RegFunction("PreparePackages", PreparePackages);
@@ -19,6 +23,72 @@ public class PluginSet_FGUI_FairyGUIUtilsWrap
 		L.RegFunction("SetDefaultFont", SetDefaultFont);
 		L.RegFunction("MakeFullScreen", MakeFullScreen);
 		L.EndStaticLibs();
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int AddOnBranchChange(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 2 && TypeChecker.CheckTypes<FairyGUI.EventCallback0>(L, 2))
+			{
+				FairyGUI.GObject arg0 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
+				FairyGUI.EventCallback0 arg1 = (FairyGUI.EventCallback0)ToLua.ToObject(L, 2);
+				PluginSet.FGUI.FairyGUIUtils.AddOnBranchChange(arg0, arg1);
+				return 0;
+			}
+			else if (count == 2 && TypeChecker.CheckTypes<FairyGUI.EventCallback1>(L, 2))
+			{
+				FairyGUI.GObject arg0 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
+				FairyGUI.EventCallback1 arg1 = (FairyGUI.EventCallback1)ToLua.ToObject(L, 2);
+				PluginSet.FGUI.FairyGUIUtils.AddOnBranchChange(arg0, arg1);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: PluginSet.FGUI.FairyGUIUtils.AddOnBranchChange");
+			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int RemoveOnBranchChange(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			FairyGUI.GObject arg0 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
+			FairyGUI.EventCallback0 arg1 = (FairyGUI.EventCallback0)ToLua.CheckDelegate<FairyGUI.EventCallback0>(L, 2);
+			PluginSet.FGUI.FairyGUIUtils.RemoveOnBranchChange(arg0, arg1);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int RemoveBranchChange(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			FairyGUI.GObject arg0 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
+			FairyGUI.EventCallback1 arg1 = (FairyGUI.EventCallback1)ToLua.CheckDelegate<FairyGUI.EventCallback1>(L, 2);
+			PluginSet.FGUI.FairyGUIUtils.RemoveBranchChange(arg0, arg1);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
@@ -109,10 +179,25 @@ public class PluginSet_FGUI_FairyGUIUtilsWrap
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 1);
-			FairyGUI.UIPackage arg0 = (FairyGUI.UIPackage)ToLua.CheckObject<FairyGUI.UIPackage>(L, 1);
-			PluginSet.FGUI.FairyGUIUtils.ReleasePackage(arg0);
-			return 0;
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 1)
+			{
+				FairyGUI.UIPackage arg0 = (FairyGUI.UIPackage)ToLua.CheckObject<FairyGUI.UIPackage>(L, 1);
+				PluginSet.FGUI.FairyGUIUtils.ReleasePackage(arg0);
+				return 0;
+			}
+			else if (count == 2)
+			{
+				FairyGUI.UIPackage arg0 = (FairyGUI.UIPackage)ToLua.CheckObject<FairyGUI.UIPackage>(L, 1);
+				bool arg1 = LuaDLL.luaL_checkboolean(L, 2);
+				PluginSet.FGUI.FairyGUIUtils.ReleasePackage(arg0, arg1);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: PluginSet.FGUI.FairyGUIUtils.ReleasePackage");
+			}
 		}
 		catch (Exception e)
 		{

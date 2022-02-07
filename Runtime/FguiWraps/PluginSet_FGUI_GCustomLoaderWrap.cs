@@ -3,6 +3,7 @@
 using System;
 using LuaInterface;
 
+#pragma warning disable 618
 namespace PluginSet.FGuiToLua.LuaWrap
 {
 public class PluginSet_FGUI_GCustomLoaderWrap
@@ -11,7 +12,6 @@ public class PluginSet_FGUI_GCustomLoaderWrap
 	{
 		L.BeginClass(typeof(PluginSet.FGUI.GCustomLoader), typeof(FairyGUI.GLoader));
 		L.RegFunction("AddBoardFrame", AddBoardFrame);
-		L.RegFunction("Dispose", Dispose);
 		L.RegFunction("New", _CreatePluginSet_FGUI_GCustomLoader);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.RegVar("EnableCacheImage", get_EnableCacheImage, set_EnableCacheImage);
@@ -52,22 +52,6 @@ public class PluginSet_FGUI_GCustomLoaderWrap
 			FairyGUI.GComponent o = obj.AddBoardFrame();
 			ToLua.PushObject(L, o);
 			return 1;
-		}
-		catch (Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e);
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int Dispose(IntPtr L)
-	{
-		try
-		{
-			ToLua.CheckArgsCount(L, 1);
-			PluginSet.FGUI.GCustomLoader obj = (PluginSet.FGUI.GCustomLoader)ToLua.CheckObject<PluginSet.FGUI.GCustomLoader>(L, 1);
-			obj.Dispose();
-			return 0;
 		}
 		catch (Exception e)
 		{

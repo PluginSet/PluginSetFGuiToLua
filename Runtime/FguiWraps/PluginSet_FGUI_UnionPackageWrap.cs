@@ -3,6 +3,7 @@
 using System;
 using LuaInterface;
 
+#pragma warning disable 618
 namespace PluginSet.FGuiToLua.LuaWrap
 {
 public class PluginSet_FGUI_UnionPackageWrap
@@ -22,6 +23,7 @@ public class PluginSet_FGUI_UnionPackageWrap
 		L.RegFunction("Unload", Unload);
 		L.RegFunction("Reload", Reload);
 		L.RegFunction("__tostring", ToLua.op_ToString);
+		L.RegVar("EVENT_ON_BRANCH_CHANGE", get_EVENT_ON_BRANCH_CHANGE, null);
 		L.EndClass();
 	}
 
@@ -162,15 +164,17 @@ public class PluginSet_FGUI_UnionPackageWrap
 		{
 			int count = LuaDLL.lua_gettop(L);
 
-			if (count == 0)
-			{
-				PluginSet.FGUI.UnionPackage.ReleaseAll();
-				return 0;
-			}
-			else if (count == 1)
+			if (count == 1)
 			{
 				bool arg0 = LuaDLL.luaL_checkboolean(L, 1);
 				PluginSet.FGUI.UnionPackage.ReleaseAll(arg0);
+				return 0;
+			}
+			else if (count == 2)
+			{
+				bool arg0 = LuaDLL.luaL_checkboolean(L, 1);
+				bool arg1 = LuaDLL.luaL_checkboolean(L, 2);
+				PluginSet.FGUI.UnionPackage.ReleaseAll(arg0, arg1);
 				return 0;
 			}
 			else
@@ -225,6 +229,20 @@ public class PluginSet_FGUI_UnionPackageWrap
 			PluginSet.FGUI.UnionPackage obj = (PluginSet.FGUI.UnionPackage)ToLua.CheckObject<PluginSet.FGUI.UnionPackage>(L, 1);
 			obj.Reload();
 			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_EVENT_ON_BRANCH_CHANGE(IntPtr L)
+	{
+		try
+		{
+			LuaDLL.lua_pushstring(L, PluginSet.FGUI.UnionPackage.EVENT_ON_BRANCH_CHANGE);
+			return 1;
 		}
 		catch (Exception e)
 		{

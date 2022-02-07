@@ -101,6 +101,7 @@ end
 
 function UIModal:OnDispose()
     UIModal.super.OnDispose(self)
+    if not self.contentPane then return end
     if not self.m_content then return end
     ---@type FairyGUI.Container
     local container = self.m_loader.displayObject
