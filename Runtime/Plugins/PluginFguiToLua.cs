@@ -11,7 +11,7 @@ namespace PluginSet.FGuiToLua
     {
         public override string Name => "FguiToLua";
 
-        public int StartOrder => 0;
+        public int StartOrder => PluginsStartOrder.VirtualMachine - 1;
         
         public bool IsRunning { get; private set; }
 
