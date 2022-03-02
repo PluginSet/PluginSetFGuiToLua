@@ -11,24 +11,16 @@ public class FairyGUI_GLoader3DWrap
 	public static void Register(LuaState L)
 	{
 		L.BeginClass(typeof(FairyGUI.GLoader3D), typeof(FairyGUI.GObject));
-#if FAIRYGUI_DRAGONBONES
 		L.RegFunction("SetDragonBones", SetDragonBones);
-#endif
-#if FAIRYGUI_SPINE
 		L.RegFunction("SetSpine", SetSpine);
-#endif
 		L.RegFunction("Dispose", Dispose);
 		L.RegFunction("Advance", Advance);
 		L.RegFunction("SetWrapTarget", SetWrapTarget);
 		L.RegFunction("Setup_BeforeAdd", Setup_BeforeAdd);
 		L.RegFunction("New", _CreateFairyGUI_GLoader3D);
 		L.RegFunction("__tostring", ToLua.op_ToString);
-#if FAIRYGUI_DRAGONBONES
 		L.RegVar("armatureComponent", get_armatureComponent, null);
-#endif
-#if FAIRYGUI_SPINE
 		L.RegVar("spineAnimation", get_spineAnimation, null);
-#endif
 		L.RegVar("url", get_url, set_url);
 		L.RegVar("icon", get_icon, set_icon);
 		L.RegVar("align", get_align, set_align);
@@ -76,7 +68,6 @@ public class FairyGUI_GLoader3DWrap
 		}
 	}
 
-#if FAIRYGUI_DRAGONBONES
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int SetDragonBones(IntPtr L)
 	{
@@ -96,9 +87,7 @@ public class FairyGUI_GLoader3DWrap
 			return LuaDLL.toluaL_exception(L, e);
 		}
 	}
-#endif
 
-#if FAIRYGUI_SPINE
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int SetSpine(IntPtr L)
 	{
@@ -137,7 +126,6 @@ public class FairyGUI_GLoader3DWrap
 			return LuaDLL.toluaL_exception(L, e);
 		}
 	}
-#endif
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int Dispose(IntPtr L)
@@ -210,7 +198,6 @@ public class FairyGUI_GLoader3DWrap
 		}
 	}
 
-#if FAIRYGUI_DRAGONBONES
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_armatureComponent(IntPtr L)
 	{
@@ -229,9 +216,7 @@ public class FairyGUI_GLoader3DWrap
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index armatureComponent on a nil value");
 		}
 	}
-#endif
 
-#if FAIRYGUI_SPINE
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_spineAnimation(IntPtr L)
 	{
@@ -250,8 +235,7 @@ public class FairyGUI_GLoader3DWrap
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index spineAnimation on a nil value");
 		}
 	}
-#endif
-	
+
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_url(IntPtr L)
 	{
