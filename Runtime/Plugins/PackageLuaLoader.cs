@@ -9,11 +9,13 @@ namespace PluginSet.FGuiToLua
     {
         public delegate AsyncOperationHandle PreparePackageFunc(string packageName);
         public delegate UIPackage LoadPackageFunc(string packageName);
+        public delegate void OnBranchChangedFunc(UIPackage package, string fromBranch, string toBranch);
         public delegate void ReloadPackageFunc(UIPackage package);
         public delegate void ReleasePackageFunc(UIPackage package, bool remove = false);
 
         private PreparePackageFunc _preparePackageFunc;
         private LoadPackageFunc _loadPackageFunc;
+        private OnBranchChangedFunc _onBranchChangedFunc;
         private ReloadPackageFunc _reloadPackageFunc;
         private ReleasePackageFunc _releasePackageFunc;
         
@@ -25,6 +27,11 @@ namespace PluginSet.FGuiToLua
         public void SetLoadPackageFunc(LuaFunction func)
         {
             _loadPackageFunc = (LoadPackageFunc) DelegateTraits<LoadPackageFunc>.Create(func);
+        }
+
+        public void SetOnBranchChangedFunc(LuaFunction func)
+        {
+            _onBranchChangedFunc = (OnBranchChangedFunc) DelegateTraits<OnBranchChangedFunc>.Create(func);
         }
 
         public void SetReloadPackageFunc(LuaFunction func)
@@ -47,6 +54,11 @@ namespace PluginSet.FGuiToLua
         public UIPackage LoadPackage(string packageName)
         {
             return _loadPackageFunc?.Invoke(packageName);
+        }
+
+        public void OnBranchChanged(UIPackage package, string fromBranch, string toBranch)
+        {
+            _onBranchChangedFunc?.Invoke(package, fromBranch, toBranch);
         }
 
         [NoToLua]

@@ -13,8 +13,10 @@ public class PluginSet_FGuiToLua_PackageLuaLoaderWrap
 		L.BeginClass(typeof(PluginSet.FGuiToLua.PackageLuaLoader), null);
 		L.RegFunction("SetPreparePackageFunc", SetPreparePackageFunc);
 		L.RegFunction("SetLoadPackageFunc", SetLoadPackageFunc);
+		L.RegFunction("SetOnBranchChangedFunc", SetOnBranchChangedFunc);
 		L.RegFunction("SetReloadPackageFunc", SetReloadPackageFunc);
 		L.RegFunction("SetReleasePackageFunc", SetReleasePackageFunc);
+		L.RegFunction("OnBranchChanged", OnBranchChanged);
 		L.RegFunction("New", _CreatePluginSet_FGuiToLua_PackageLuaLoader);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.EndClass();
@@ -79,6 +81,23 @@ public class PluginSet_FGuiToLua_PackageLuaLoaderWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int SetOnBranchChangedFunc(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			PluginSet.FGuiToLua.PackageLuaLoader obj = (PluginSet.FGuiToLua.PackageLuaLoader)ToLua.CheckObject<PluginSet.FGuiToLua.PackageLuaLoader>(L, 1);
+			LuaFunction arg0 = ToLua.CheckLuaFunction(L, 2);
+			obj.SetOnBranchChangedFunc(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int SetReloadPackageFunc(IntPtr L)
 	{
 		try
@@ -104,6 +123,25 @@ public class PluginSet_FGuiToLua_PackageLuaLoaderWrap
 			PluginSet.FGuiToLua.PackageLuaLoader obj = (PluginSet.FGuiToLua.PackageLuaLoader)ToLua.CheckObject<PluginSet.FGuiToLua.PackageLuaLoader>(L, 1);
 			LuaFunction arg0 = ToLua.CheckLuaFunction(L, 2);
 			obj.SetReleasePackageFunc(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int OnBranchChanged(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 4);
+			PluginSet.FGuiToLua.PackageLuaLoader obj = (PluginSet.FGuiToLua.PackageLuaLoader)ToLua.CheckObject<PluginSet.FGuiToLua.PackageLuaLoader>(L, 1);
+			FairyGUI.UIPackage arg0 = (FairyGUI.UIPackage)ToLua.CheckObject<FairyGUI.UIPackage>(L, 2);
+			string arg1 = ToLua.CheckString(L, 3);
+			string arg2 = ToLua.CheckString(L, 4);
+			obj.OnBranchChanged(arg0, arg1, arg2);
 			return 0;
 		}
 		catch (Exception e)

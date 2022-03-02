@@ -586,29 +586,31 @@ namespace PluginSet.FGuiToLua.LuaWrap
 			public FairyGUI_UIPackage_LoadResource_Event(LuaFunction func) : base(func) { }
 			public FairyGUI_UIPackage_LoadResource_Event(LuaFunction func, LuaTable self) : base(func, self) { }
 
-			public object Call(string param0, string param1, System.Type param2, out FairyGUI.DestroyMethod param3)
+			public object Call(string param0, string param1, string param2, System.Type param3, out FairyGUI.DestroyMethod param4)
 			{
 				func.BeginPCall();
 				func.Push(param0);
 				func.Push(param1);
 				func.Push(param2);
+				func.Push(param3);
 				func.PCall();
 				object ret = func.CheckVariant();
-				param3 = (FairyGUI.DestroyMethod)func.CheckObject(typeof(FairyGUI.DestroyMethod));
+				param4 = (FairyGUI.DestroyMethod)func.CheckObject(typeof(FairyGUI.DestroyMethod));
 				func.EndPCall();
 				return ret;
 			}
 
-			public object CallWithSelf(string param0, string param1, System.Type param2, out FairyGUI.DestroyMethod param3)
+			public object CallWithSelf(string param0, string param1, string param2, System.Type param3, out FairyGUI.DestroyMethod param4)
 			{
 				func.BeginPCall();
 				func.Push(self);
 				func.Push(param0);
 				func.Push(param1);
 				func.Push(param2);
+				func.Push(param3);
 				func.PCall();
 				object ret = func.CheckVariant();
-				param3 = (FairyGUI.DestroyMethod)func.CheckObject(typeof(FairyGUI.DestroyMethod));
+				param4 = (FairyGUI.DestroyMethod)func.CheckObject(typeof(FairyGUI.DestroyMethod));
 				func.EndPCall();
 				return ret;
 			}
@@ -618,9 +620,9 @@ namespace PluginSet.FGuiToLua.LuaWrap
 		{
 			if (func == null)
 			{
-				FairyGUI.UIPackage.LoadResource fn = delegate(string param0, string param1, System.Type param2, out FairyGUI.DestroyMethod param3) 
+				FairyGUI.UIPackage.LoadResource fn = delegate(string param0, string param1, string param2, System.Type param3, out FairyGUI.DestroyMethod param4) 
 			{
-				param3 = default(FairyGUI.DestroyMethod);
+				param4 = default(FairyGUI.DestroyMethod);
 			return null;			};
 
 				return fn;
@@ -657,25 +659,27 @@ namespace PluginSet.FGuiToLua.LuaWrap
 			public FairyGUI_UIPackage_LoadResourceAsync_Event(LuaFunction func) : base(func) { }
 			public FairyGUI_UIPackage_LoadResourceAsync_Event(LuaFunction func, LuaTable self) : base(func, self) { }
 
-			public void Call(string param0, string param1, System.Type param2, FairyGUI.PackageItem param3)
+			public void Call(string param0, string param1, string param2, System.Type param3, FairyGUI.PackageItem param4)
 			{
 				func.BeginPCall();
 				func.Push(param0);
 				func.Push(param1);
 				func.Push(param2);
-				func.PushObject(param3);
+				func.Push(param3);
+				func.PushObject(param4);
 				func.PCall();
 				func.EndPCall();
 			}
 
-			public void CallWithSelf(string param0, string param1, System.Type param2, FairyGUI.PackageItem param3)
+			public void CallWithSelf(string param0, string param1, string param2, System.Type param3, FairyGUI.PackageItem param4)
 			{
 				func.BeginPCall();
 				func.Push(self);
 				func.Push(param0);
 				func.Push(param1);
 				func.Push(param2);
-				func.PushObject(param3);
+				func.Push(param3);
+				func.PushObject(param4);
 				func.PCall();
 				func.EndPCall();
 			}
@@ -685,7 +689,7 @@ namespace PluginSet.FGuiToLua.LuaWrap
 		{
 			if (func == null)
 			{
-				FairyGUI.UIPackage.LoadResourceAsync fn = delegate(string param0, string param1, System.Type param2, FairyGUI.PackageItem param3) { };
+				FairyGUI.UIPackage.LoadResourceAsync fn = delegate(string param0, string param1, string param2, System.Type param3, FairyGUI.PackageItem param4) { };
 				return fn;
 			}
 

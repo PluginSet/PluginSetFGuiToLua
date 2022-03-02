@@ -35,7 +35,7 @@ public class FairyGUI_UIPackageWrap
 		L.RegFunction("GetItem", GetItem);
 		L.RegFunction("GetItemByName", GetItemByName);
 		L.RegFunction("SetItemAsset", SetItemAsset);
-		L.RegFunction("SetBranches", SetBranches);
+		L.RegFunction("ApplyBranches", ApplyBranches);
 		L.RegFunction("VirtualAdd", VirtualAdd);
 		L.RegFunction("VirtualRemove", VirtualRemove);
 		L.RegFunction("New", _CreateFairyGUI_UIPackage);
@@ -659,15 +659,16 @@ public class FairyGUI_UIPackageWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int SetBranches(IntPtr L)
+	static int ApplyBranches(IntPtr L)
 	{
 		try
 		{
 			ToLua.CheckArgsCount(L, 2);
 			FairyGUI.UIPackage obj = (FairyGUI.UIPackage)ToLua.CheckObject<FairyGUI.UIPackage>(L, 1);
-			string[] arg0 = ToLua.CheckStringArray(L, 2);
-			obj.SetBranches(arg0);
-			return 0;
+			string arg0 = ToLua.CheckString(L, 2);
+			int o = obj.ApplyBranches(arg0);
+			LuaDLL.lua_pushinteger(L, o);
+			return 1;
 		}
 		catch (Exception e)
 		{
@@ -680,10 +681,11 @@ public class FairyGUI_UIPackageWrap
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 2);
+			ToLua.CheckArgsCount(L, 3);
 			FairyGUI.UIPackage obj = (FairyGUI.UIPackage)ToLua.CheckObject<FairyGUI.UIPackage>(L, 1);
 			FairyGUI.PackageItem arg0 = (FairyGUI.PackageItem)ToLua.CheckObject<FairyGUI.PackageItem>(L, 2);
-			obj.VirtualAdd(arg0);
+			string arg1 = ToLua.CheckString(L, 3);
+			obj.VirtualAdd(arg0, arg1);
 			return 0;
 		}
 		catch (Exception e)

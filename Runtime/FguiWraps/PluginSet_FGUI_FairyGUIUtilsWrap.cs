@@ -19,6 +19,7 @@ public class PluginSet_FGUI_FairyGUIUtilsWrap
 		L.RegFunction("PreparePackages", PreparePackages);
 		L.RegFunction("LoadPackage", LoadPackage);
 		L.RegFunction("ReloadPackage", ReloadPackage);
+		L.RegFunction("OnPackageBranchChanged", OnPackageBranchChanged);
 		L.RegFunction("ReleasePackage", ReleasePackage);
 		L.RegFunction("SetDefaultFont", SetDefaultFont);
 		L.RegFunction("MakeFullScreen", MakeFullScreen);
@@ -166,6 +167,24 @@ public class PluginSet_FGUI_FairyGUIUtilsWrap
 			ToLua.CheckArgsCount(L, 1);
 			FairyGUI.UIPackage arg0 = (FairyGUI.UIPackage)ToLua.CheckObject<FairyGUI.UIPackage>(L, 1);
 			PluginSet.FGUI.FairyGUIUtils.ReloadPackage(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int OnPackageBranchChanged(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 3);
+			FairyGUI.UIPackage arg0 = (FairyGUI.UIPackage)ToLua.CheckObject<FairyGUI.UIPackage>(L, 1);
+			string arg1 = ToLua.CheckString(L, 2);
+			string arg2 = ToLua.CheckString(L, 3);
+			PluginSet.FGUI.FairyGUIUtils.OnPackageBranchChanged(arg0, arg1, arg2);
 			return 0;
 		}
 		catch (Exception e)

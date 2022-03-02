@@ -11,12 +11,24 @@ public class FairyGUI_GLoader3DWrap
 	public static void Register(LuaState L)
 	{
 		L.BeginClass(typeof(FairyGUI.GLoader3D), typeof(FairyGUI.GObject));
+#if FAIRYGUI_DRAGONBONES
+		L.RegFunction("SetDragonBones", SetDragonBones);
+#endif
+#if FAIRYGUI_SPINE
+		L.RegFunction("SetSpine", SetSpine);
+#endif
 		L.RegFunction("Dispose", Dispose);
 		L.RegFunction("Advance", Advance);
 		L.RegFunction("SetWrapTarget", SetWrapTarget);
 		L.RegFunction("Setup_BeforeAdd", Setup_BeforeAdd);
 		L.RegFunction("New", _CreateFairyGUI_GLoader3D);
 		L.RegFunction("__tostring", ToLua.op_ToString);
+#if FAIRYGUI_DRAGONBONES
+		L.RegVar("armatureComponent", get_armatureComponent, null);
+#endif
+#if FAIRYGUI_SPINE
+		L.RegVar("spineAnimation", get_spineAnimation, null);
+#endif
 		L.RegVar("url", get_url, set_url);
 		L.RegVar("icon", get_icon, set_icon);
 		L.RegVar("align", get_align, set_align);
@@ -63,6 +75,69 @@ public class FairyGUI_GLoader3DWrap
 			return LuaDLL.toluaL_exception(L, e);
 		}
 	}
+
+#if FAIRYGUI_DRAGONBONES
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int SetDragonBones(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 5);
+			FairyGUI.GLoader3D obj = (FairyGUI.GLoader3D)ToLua.CheckObject<FairyGUI.GLoader3D>(L, 1);
+			DragonBones.DragonBonesData arg0 = (DragonBones.DragonBonesData)ToLua.CheckObject<DragonBones.DragonBonesData>(L, 2);
+			int arg1 = (int)LuaDLL.luaL_checknumber(L, 3);
+			int arg2 = (int)LuaDLL.luaL_checknumber(L, 4);
+			UnityEngine.Vector2 arg3 = ToLua.ToVector2(L, 5);
+			obj.SetDragonBones(arg0, arg1, arg2, arg3);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+#endif
+
+#if FAIRYGUI_SPINE
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int SetSpine(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 5)
+			{
+				FairyGUI.GLoader3D obj = (FairyGUI.GLoader3D)ToLua.CheckObject<FairyGUI.GLoader3D>(L, 1);
+				Spine.Unity.SkeletonDataAsset arg0 = (Spine.Unity.SkeletonDataAsset)ToLua.CheckObject<Spine.Unity.SkeletonDataAsset>(L, 2);
+				int arg1 = (int)LuaDLL.luaL_checknumber(L, 3);
+				int arg2 = (int)LuaDLL.luaL_checknumber(L, 4);
+				UnityEngine.Vector2 arg3 = ToLua.ToVector2(L, 5);
+				obj.SetSpine(arg0, arg1, arg2, arg3);
+				return 0;
+			}
+			else if (count == 6)
+			{
+				FairyGUI.GLoader3D obj = (FairyGUI.GLoader3D)ToLua.CheckObject<FairyGUI.GLoader3D>(L, 1);
+				Spine.Unity.SkeletonDataAsset arg0 = (Spine.Unity.SkeletonDataAsset)ToLua.CheckObject<Spine.Unity.SkeletonDataAsset>(L, 2);
+				int arg1 = (int)LuaDLL.luaL_checknumber(L, 3);
+				int arg2 = (int)LuaDLL.luaL_checknumber(L, 4);
+				UnityEngine.Vector2 arg3 = ToLua.ToVector2(L, 5);
+				bool arg4 = LuaDLL.luaL_checkboolean(L, 6);
+				obj.SetSpine(arg0, arg1, arg2, arg3, arg4);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: FairyGUI.GLoader3D.SetSpine");
+			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+#endif
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int Dispose(IntPtr L)
@@ -135,6 +210,48 @@ public class FairyGUI_GLoader3DWrap
 		}
 	}
 
+#if FAIRYGUI_DRAGONBONES
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_armatureComponent(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GLoader3D obj = (FairyGUI.GLoader3D)o;
+			DragonBones.UnityArmatureComponent ret = obj.armatureComponent;
+			ToLua.Push(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index armatureComponent on a nil value");
+		}
+	}
+#endif
+
+#if FAIRYGUI_SPINE
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_spineAnimation(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GLoader3D obj = (FairyGUI.GLoader3D)o;
+			Spine.Unity.SkeletonAnimation ret = obj.spineAnimation;
+			ToLua.Push(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index spineAnimation on a nil value");
+		}
+	}
+#endif
+	
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_url(IntPtr L)
 	{

@@ -46,9 +46,6 @@ end
 ---@field public URL string static 
 ---@field public NAME string static 
 ---@field public PACKAGES string[] static 
----@field public DEPENDENTS string[] static 
----@field public dependents IComponent[] static 
----@field public InitBinders fun(self:self):void static function
 ---@field public ctor function
 ---@field public InitMembers function
 ---fgui Component extend
@@ -58,30 +55,6 @@ end
 ---@return K
 function fguiUtils.Component(name, base)
     local cls = fguiUtils.Class(name, base)
-    cls.dependents = false
-    
-    function cls:LoadDependents()
-        if not self.dependents then
-            local deps = {}
-            for i, dep in ipairs(self.DEPENDENTS) do
-                deps[i] = loadFGUIScript(dep)
-            end
-            self.dependents = deps
-        end
-        return self.dependents
-    end
-
-    function cls:InitBinders(exclude)
-        exclude = exclude or { [self] = 1 }
-        for _, dep in ipairs(self:LoadDependents()) do
-            if not exclude[dep] then
-                exclude[dep] = 1
-                dep:InitBinders(exclude)
-            end
-        end
-
-        self:Bind(self.URL)
-    end
     
     function cls:BindSelf()
         self:Bind(self.URL)
@@ -96,7 +69,6 @@ function fguiUtils.Component(name, base)
         self:InitMembers()
     end
 
-    ---@param cmp FairyGUI.GComponent
     ---@overload
     function cls:InitMembers()
     end

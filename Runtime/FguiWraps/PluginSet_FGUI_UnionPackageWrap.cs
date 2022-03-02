@@ -22,6 +22,7 @@ public class PluginSet_FGUI_UnionPackageWrap
 		L.RegFunction("LoadAll", LoadAll);
 		L.RegFunction("Unload", Unload);
 		L.RegFunction("Reload", Reload);
+		L.RegFunction("ChangeBranch", ChangeBranch);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.RegVar("EVENT_ON_BRANCH_CHANGE", get_EVENT_ON_BRANCH_CHANGE, null);
 		L.EndClass();
@@ -228,6 +229,23 @@ public class PluginSet_FGUI_UnionPackageWrap
 			ToLua.CheckArgsCount(L, 1);
 			PluginSet.FGUI.UnionPackage obj = (PluginSet.FGUI.UnionPackage)ToLua.CheckObject<PluginSet.FGUI.UnionPackage>(L, 1);
 			obj.Reload();
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int ChangeBranch(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			PluginSet.FGUI.UnionPackage obj = (PluginSet.FGUI.UnionPackage)ToLua.CheckObject<PluginSet.FGUI.UnionPackage>(L, 1);
+			string arg0 = ToLua.CheckString(L, 2);
+			obj.ChangeBranch(arg0);
 			return 0;
 		}
 		catch (Exception e)

@@ -23,7 +23,7 @@ lua使用可变参数更灵活。在lua中重新实现```UIWindow```和```UIModa
 
 ```fguiUtils.Class```能继承C#导出类，并提供```Bind```接口绑定组件扩展，将指定url对应的组件生成为返回的类的实例。
 
-```fguiUtils.Component```在```fguiUtils.Class```的基础上，对导出脚本进行封装，提供了```LoadDependents```加载所有依赖脚本和```InitBinders```绑定所有依赖脚本的接口。组件在初始化时会调用导出的```InitMembers```方法获取组件中的子节点并作为成员变量保存
+```fguiUtils.Component```在```fguiUtils.Class```的基础上，对导出脚本进行封装。组件在初始化时会调用导出的```InitMembers```方法获取组件中的子节点并作为成员变量保存
 
 #### ```FairyGUI.FairyBase```
 该脚本对FairyGUI中的常用组件类型进行了统一封装，添加```UI```前缀作为全局变量，方便直接继承或使用这些类型。
