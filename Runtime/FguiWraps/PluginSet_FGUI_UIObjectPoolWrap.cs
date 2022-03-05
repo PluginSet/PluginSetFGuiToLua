@@ -15,6 +15,8 @@ public class PluginSet_FGUI_UIObjectPoolWrap
 		L.RegFunction("ClearAll", ClearAll);
 		L.RegFunction("Get", Get);
 		L.RegFunction("Put", Put);
+		L.RegFunction("Clean", Clean);
+		L.RegFunction("ClearByUrl", ClearByUrl);
 		L.RegFunction("Destroy", Destroy);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.RegVar("Instance", get_Instance, null);
@@ -81,6 +83,39 @@ public class PluginSet_FGUI_UIObjectPoolWrap
 			PluginSet.FGUI.UIObjectPool obj = (PluginSet.FGUI.UIObjectPool)ToLua.CheckObject<PluginSet.FGUI.UIObjectPool>(L, 1);
 			FairyGUI.GObject arg0 = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 2);
 			obj.Put(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int Clean(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			PluginSet.FGUI.UIObjectPool obj = (PluginSet.FGUI.UIObjectPool)ToLua.CheckObject<PluginSet.FGUI.UIObjectPool>(L, 1);
+			obj.Clean();
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int ClearByUrl(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			PluginSet.FGUI.UIObjectPool obj = (PluginSet.FGUI.UIObjectPool)ToLua.CheckObject<PluginSet.FGUI.UIObjectPool>(L, 1);
+			string arg0 = ToLua.CheckString(L, 2);
+			obj.ClearByUrl(arg0);
 			return 0;
 		}
 		catch (Exception e)
