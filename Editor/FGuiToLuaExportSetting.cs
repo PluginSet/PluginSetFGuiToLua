@@ -112,6 +112,7 @@ namespace PluginSet.FGuiToLua.Editor
             typeof(PackageLuaLoader),
             typeof(UIToast),
             typeof(GCustomLoader),
+            typeof(GCustomList),
             typeof(GLoader3D),
             typeof(GCustomLoader3D),
         };

@@ -14,6 +14,7 @@ public class FairyGUI_UIObjectFactoryWrap
 		L.RegFunction("SetPackageItemExtension", SetPackageItemExtension);
 		L.RegFunction("SetExtension", SetExtension);
 		L.RegFunction("SetLoaderExtension", SetLoaderExtension);
+		L.RegFunction("SetListExtension", SetListExtension);
 		L.RegFunction("SetTextFieldExtension", SetTextFieldExtension);
 		L.RegFunction("SetTextInputExtension", SetTextInputExtension);
 		L.RegFunction("SetRichTextFieldExtension", SetRichTextFieldExtension);
@@ -25,6 +26,7 @@ public class FairyGUI_UIObjectFactoryWrap
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.RegFunction("GComponentCreator", FairyGUI_UIObjectFactory_GComponentCreator);
 		L.RegFunction("GLoaderCreator", FairyGUI_UIObjectFactory_GLoaderCreator);
+		L.RegFunction("GListCreator", FairyGUI_UIObjectFactory_GListCreator);
 		L.RegFunction("GTextFieldCreator", FairyGUI_UIObjectFactory_GTextFieldCreator);
 		L.RegFunction("GTextInputCreator", FairyGUI_UIObjectFactory_GTextInputCreator);
 		L.RegFunction("GRichTextFieldCreator", FairyGUI_UIObjectFactory_GRichTextFieldCreator);
@@ -128,6 +130,36 @@ public class FairyGUI_UIObjectFactoryWrap
 			else
 			{
 				return LuaDLL.luaL_throw(L, "invalid arguments to method: FairyGUI.UIObjectFactory.SetLoaderExtension");
+			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int SetListExtension(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 1 && TypeChecker.CheckTypes<System.Type>(L, 1))
+			{
+				System.Type arg0 = (System.Type)ToLua.ToObject(L, 1);
+				FairyGUI.UIObjectFactory.SetListExtension(arg0);
+				return 0;
+			}
+			else if (count == 1 && TypeChecker.CheckTypes<FairyGUI.UIObjectFactory.GListCreator>(L, 1))
+			{
+				FairyGUI.UIObjectFactory.GListCreator arg0 = (FairyGUI.UIObjectFactory.GListCreator)ToLua.ToObject(L, 1);
+				FairyGUI.UIObjectFactory.SetListExtension(arg0);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: FairyGUI.UIObjectFactory.SetListExtension");
 			}
 		}
 		catch (Exception e)
@@ -371,6 +403,33 @@ public class FairyGUI_UIObjectFactoryWrap
 				{
 					LuaTable self = ToLua.CheckLuaTable(L, 2);
 					Delegate arg1 = DelegateTraits<FairyGUI.UIObjectFactory.GLoaderCreator>.Create(func, self);
+					ToLua.Push(L, arg1);
+				}
+				return 1;
+			}
+			catch(Exception e)
+			{
+				return LuaDLL.toluaL_exception(L, e);
+			}
+		}
+
+		[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+		static int FairyGUI_UIObjectFactory_GListCreator(IntPtr L)
+		{
+			try
+			{
+				int count = LuaDLL.lua_gettop(L);
+				LuaFunction func = ToLua.CheckLuaFunction(L, 1);
+
+				if (count == 1)
+				{
+					Delegate arg1 = DelegateTraits<FairyGUI.UIObjectFactory.GListCreator>.Create(func);
+					ToLua.Push(L, arg1);
+				}
+				else
+				{
+					LuaTable self = ToLua.CheckLuaTable(L, 2);
+					Delegate arg1 = DelegateTraits<FairyGUI.UIObjectFactory.GListCreator>.Create(func, self);
 					ToLua.Push(L, arg1);
 				}
 				return 1;

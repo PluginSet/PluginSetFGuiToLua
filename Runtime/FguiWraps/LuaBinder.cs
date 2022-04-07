@@ -81,6 +81,7 @@ namespace PluginSet.FGuiToLua.LuaWrap
 			L.RegFunction("GComponentCreator", FairyGUI_UIObjectFactory_GComponentCreator);
 			L.RegFunction("GLoaderCreator", FairyGUI_UIObjectFactory_GLoaderCreator);
 			L.RegFunction("GLoader3DCreator", FairyGUI_UIObjectFactory_GLoader3DCreator);
+			L.RegFunction("GListCreator", FairyGUI_UIObjectFactory_GListCreator);
 			L.RegFunction("GTextFieldCreator", FairyGUI_UIObjectFactory_GTextFieldCreator);
 			L.RegFunction("GTextInputCreator", FairyGUI_UIObjectFactory_GTextInputCreator);
 			L.RegFunction("GRichTextFieldCreator", FairyGUI_UIObjectFactory_GRichTextFieldCreator);
@@ -98,6 +99,7 @@ namespace PluginSet.FGuiToLua.LuaWrap
 			PluginSet_FGUI_UnionPackageWrap.Register(L);
 			PluginSet_FGUI_UIToastWrap.Register(L);
 			PluginSet_FGUI_GCustomLoaderWrap.Register(L);
+			PluginSet_FGUI_GCustomListWrap.Register(L);
 			PluginSet_FGUI_GCustomLoader3DWrap.Register(L);
 			PluginSet_FGUI_ToastBaseWrap.Register(L);
 			L.BeginModule("UISource");
@@ -575,6 +577,33 @@ namespace PluginSet.FGuiToLua.LuaWrap
 				{
 					LuaTable self = ToLua.CheckLuaTable(L, 2);
 					Delegate arg1 = DelegateTraits<FairyGUI.UIObjectFactory.GLoader3DCreator>.Create(func, self);
+					ToLua.Push(L, arg1);
+				}
+				return 1;
+			}
+			catch(Exception e)
+			{
+				return LuaDLL.toluaL_exception(L, e);
+			}
+		}
+
+		[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+		static int FairyGUI_UIObjectFactory_GListCreator(IntPtr L)
+		{
+			try
+			{
+				int count = LuaDLL.lua_gettop(L);
+				LuaFunction func = ToLua.CheckLuaFunction(L, 1);
+
+				if (count == 1)
+				{
+					Delegate arg1 = DelegateTraits<FairyGUI.UIObjectFactory.GListCreator>.Create(func);
+					ToLua.Push(L, arg1);
+				}
+				else
+				{
+					LuaTable self = ToLua.CheckLuaTable(L, 2);
+					Delegate arg1 = DelegateTraits<FairyGUI.UIObjectFactory.GListCreator>.Create(func, self);
 					ToLua.Push(L, arg1);
 				}
 				return 1;
