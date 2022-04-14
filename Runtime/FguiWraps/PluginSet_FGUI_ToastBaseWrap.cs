@@ -11,6 +11,7 @@ public class PluginSet_FGUI_ToastBaseWrap
 	public static void Register(LuaState L)
 	{
 		L.BeginClass(typeof(PluginSet.FGUI.ToastBase), typeof(FairyGUI.GLabel));
+		L.RegFunction("Show", Show);
 		L.RegFunction("Hide", Hide);
 		L.RegFunction("Close", Close);
 		L.RegFunction("New", _CreatePluginSet_FGUI_ToastBase);
@@ -36,6 +37,22 @@ public class PluginSet_FGUI_ToastBaseWrap
 			{
 				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: PluginSet.FGUI.ToastBase.New");
 			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int Show(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			PluginSet.FGUI.ToastBase obj = (PluginSet.FGUI.ToastBase)ToLua.CheckObject<PluginSet.FGUI.ToastBase>(L, 1);
+			obj.Show();
+			return 0;
 		}
 		catch (Exception e)
 		{
