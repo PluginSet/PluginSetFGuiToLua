@@ -53,10 +53,25 @@ public class PluginSet_FGUI_UIToastWrap
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 1);
-			PluginSet.FGUI.UIToast obj = (PluginSet.FGUI.UIToast)ToLua.CheckObject<PluginSet.FGUI.UIToast>(L, 1);
-			obj.Show();
-			return 0;
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 1)
+			{
+				PluginSet.FGUI.UIToast obj = (PluginSet.FGUI.UIToast)ToLua.CheckObject<PluginSet.FGUI.UIToast>(L, 1);
+				obj.Show();
+				return 0;
+			}
+			else if (count == 2)
+			{
+				PluginSet.FGUI.UIToast obj = (PluginSet.FGUI.UIToast)ToLua.CheckObject<PluginSet.FGUI.UIToast>(L, 1);
+				float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
+				obj.Show(arg0);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: PluginSet.FGUI.UIToast.Show");
+			}
 		}
 		catch (Exception e)
 		{
