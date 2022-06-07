@@ -13,6 +13,7 @@ public class PluginSet_FGUI_UIToastWrap
 		L.BeginClass(typeof(PluginSet.FGUI.UIToast), typeof(FairyGUI.GLabel));
 		L.RegFunction("SetRule", SetRule);
 		L.RegFunction("Show", Show);
+		L.RegFunction("PresetDelay", PresetDelay);
 		L.RegFunction("Hide", Hide);
 		L.RegFunction("Close", Close);
 		L.RegFunction("Dispose", Dispose);
@@ -89,6 +90,23 @@ public class PluginSet_FGUI_UIToastWrap
 			{
 				return LuaDLL.luaL_throw(L, "invalid arguments to method: PluginSet.FGUI.UIToast.Show");
 			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int PresetDelay(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			PluginSet.FGUI.UIToast obj = (PluginSet.FGUI.UIToast)ToLua.CheckObject<PluginSet.FGUI.UIToast>(L, 1);
+			System.Nullable<float> arg0 = ToLua.CheckNullable<float>(L, 2);
+			obj.PresetDelay(arg0);
+			return 0;
 		}
 		catch (Exception e)
 		{
