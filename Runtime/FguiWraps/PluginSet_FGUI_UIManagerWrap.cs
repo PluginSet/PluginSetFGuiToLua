@@ -19,6 +19,7 @@ public class PluginSet_FGUI_UIManagerWrap
 		L.RegFunction("ShowView", ShowView);
 		L.RegFunction("ShowModal", ShowModal);
 		L.RegFunction("ShowLoading", ShowLoading);
+		L.RegFunction("CreateToastRule", CreateToastRule);
 		L.RegFunction("ShowToast", ShowToast);
 		L.RegFunction("HideAllToast", HideAllToast);
 		L.RegFunction("HideToast", HideToast);
@@ -204,6 +205,42 @@ public class PluginSet_FGUI_UIManagerWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int CreateToastRule(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 4 && TypeChecker.CheckTypes<int, float, bool, bool>(L, 1))
+			{
+				int arg0 = (int)LuaDLL.lua_tonumber(L, 1);
+				float arg1 = (float)LuaDLL.lua_tonumber(L, 2);
+				bool arg2 = LuaDLL.lua_toboolean(L, 3);
+				bool arg3 = LuaDLL.lua_toboolean(L, 4);
+				PluginSet.FGUI.UIManager.CreateToastRule(arg0, arg1, arg2, arg3);
+				return 0;
+			}
+			else if (count == 4 && TypeChecker.CheckTypes<string, float, bool, bool>(L, 1))
+			{
+				string arg0 = ToLua.ToString(L, 1);
+				float arg1 = (float)LuaDLL.lua_tonumber(L, 2);
+				bool arg2 = LuaDLL.lua_toboolean(L, 3);
+				bool arg3 = LuaDLL.lua_toboolean(L, 4);
+				PluginSet.FGUI.UIManager.CreateToastRule(arg0, arg1, arg2, arg3);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: PluginSet.FGUI.UIManager.CreateToastRule");
+			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int ShowToast(IntPtr L)
 	{
 		try
@@ -213,7 +250,7 @@ public class PluginSet_FGUI_UIManagerWrap
 			if (count == 1)
 			{
 				string arg0 = ToLua.CheckString(L, 1);
-				PluginSet.FGUI.ToastBase o = PluginSet.FGUI.UIManager.ShowToast(arg0);
+				PluginSet.FGUI.UIToast o = PluginSet.FGUI.UIManager.ShowToast(arg0);
 				ToLua.PushObject(L, o);
 				return 1;
 			}
@@ -221,7 +258,7 @@ public class PluginSet_FGUI_UIManagerWrap
 			{
 				string arg0 = ToLua.CheckString(L, 1);
 				string arg1 = ToLua.CheckString(L, 2);
-				PluginSet.FGUI.ToastBase o = PluginSet.FGUI.UIManager.ShowToast(arg0, arg1);
+				PluginSet.FGUI.UIToast o = PluginSet.FGUI.UIManager.ShowToast(arg0, arg1);
 				ToLua.PushObject(L, o);
 				return 1;
 			}
@@ -230,7 +267,7 @@ public class PluginSet_FGUI_UIManagerWrap
 				string arg0 = ToLua.CheckString(L, 1);
 				string arg1 = ToLua.CheckString(L, 2);
 				string arg2 = ToLua.CheckString(L, 3);
-				PluginSet.FGUI.ToastBase o = PluginSet.FGUI.UIManager.ShowToast(arg0, arg1, arg2);
+				PluginSet.FGUI.UIToast o = PluginSet.FGUI.UIManager.ShowToast(arg0, arg1, arg2);
 				ToLua.PushObject(L, o);
 				return 1;
 			}
@@ -240,7 +277,18 @@ public class PluginSet_FGUI_UIManagerWrap
 				string arg1 = ToLua.CheckString(L, 2);
 				string arg2 = ToLua.CheckString(L, 3);
 				int arg3 = (int)LuaDLL.luaL_checknumber(L, 4);
-				PluginSet.FGUI.ToastBase o = PluginSet.FGUI.UIManager.ShowToast(arg0, arg1, arg2, arg3);
+				PluginSet.FGUI.UIToast o = PluginSet.FGUI.UIManager.ShowToast(arg0, arg1, arg2, arg3);
+				ToLua.PushObject(L, o);
+				return 1;
+			}
+			else if (count == 5)
+			{
+				string arg0 = ToLua.CheckString(L, 1);
+				string arg1 = ToLua.CheckString(L, 2);
+				string arg2 = ToLua.CheckString(L, 3);
+				int arg3 = (int)LuaDLL.luaL_checknumber(L, 4);
+				string arg4 = ToLua.CheckString(L, 5);
+				PluginSet.FGUI.UIToast o = PluginSet.FGUI.UIManager.ShowToast(arg0, arg1, arg2, arg3, arg4);
 				ToLua.PushObject(L, o);
 				return 1;
 			}

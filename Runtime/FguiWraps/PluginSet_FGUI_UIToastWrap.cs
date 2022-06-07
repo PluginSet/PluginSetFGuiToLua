@@ -10,15 +10,15 @@ public class PluginSet_FGUI_UIToastWrap
 {
 	public static void Register(LuaState L)
 	{
-		L.BeginClass(typeof(PluginSet.FGUI.UIToast), typeof(PluginSet.FGUI.ToastBase));
+		L.BeginClass(typeof(PluginSet.FGUI.UIToast), typeof(FairyGUI.GLabel));
+		L.RegFunction("SetRule", SetRule);
 		L.RegFunction("Show", Show);
 		L.RegFunction("Hide", Hide);
+		L.RegFunction("Close", Close);
 		L.RegFunction("Dispose", Dispose);
 		L.RegFunction("New", _CreatePluginSet_FGUI_UIToast);
 		L.RegFunction("__tostring", ToLua.op_ToString);
-		L.RegVar("ToastStaySeconds", get_ToastStaySeconds, set_ToastStaySeconds);
-		L.RegVar("OutImmediatelyWhenNew", get_OutImmediatelyWhenNew, set_OutImmediatelyWhenNew);
-		L.RegVar("EnableShowWhenLastOut", get_EnableShowWhenLastOut, set_EnableShowWhenLastOut);
+		L.RegVar("Tag", get_Tag, set_Tag);
 		L.RegVar("InTransition", get_InTransition, set_InTransition);
 		L.RegVar("OutTransition", get_OutTransition, set_OutTransition);
 		L.EndClass();
@@ -41,6 +41,23 @@ public class PluginSet_FGUI_UIToastWrap
 			{
 				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: PluginSet.FGUI.UIToast.New");
 			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int SetRule(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			PluginSet.FGUI.UIToast obj = (PluginSet.FGUI.UIToast)ToLua.CheckObject<PluginSet.FGUI.UIToast>(L, 1);
+			PluginSet.FGUI.UIToastShowRule arg0 = (PluginSet.FGUI.UIToastShowRule)ToLua.CheckObject<PluginSet.FGUI.UIToastShowRule>(L, 2);
+			obj.SetRule(arg0);
+			return 0;
 		}
 		catch (Exception e)
 		{
@@ -96,6 +113,22 @@ public class PluginSet_FGUI_UIToastWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int Close(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			PluginSet.FGUI.UIToast obj = (PluginSet.FGUI.UIToast)ToLua.CheckObject<PluginSet.FGUI.UIToast>(L, 1);
+			obj.Close();
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int Dispose(IntPtr L)
 	{
 		try
@@ -112,44 +145,21 @@ public class PluginSet_FGUI_UIToastWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int get_ToastStaySeconds(IntPtr L)
+	static int get_Tag(IntPtr L)
 	{
-		try
-		{
-			LuaDLL.lua_pushnumber(L, PluginSet.FGUI.UIToast.ToastStaySeconds);
-			return 1;
-		}
-		catch (Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e);
-		}
-	}
+		object o = null;
 
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int get_OutImmediatelyWhenNew(IntPtr L)
-	{
 		try
 		{
-			LuaDLL.lua_pushboolean(L, PluginSet.FGUI.UIToast.OutImmediatelyWhenNew);
+			o = ToLua.ToObject(L, 1);
+			PluginSet.FGUI.UIToast obj = (PluginSet.FGUI.UIToast)o;
+			int ret = obj.Tag;
+			LuaDLL.lua_pushinteger(L, ret);
 			return 1;
 		}
-		catch (Exception e)
+		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e);
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int get_EnableShowWhenLastOut(IntPtr L)
-	{
-		try
-		{
-			LuaDLL.lua_pushboolean(L, PluginSet.FGUI.UIToast.EnableShowWhenLastOut);
-			return 1;
-		}
-		catch (Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Tag on a nil value");
 		}
 	}
 
@@ -192,47 +202,21 @@ public class PluginSet_FGUI_UIToastWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int set_ToastStaySeconds(IntPtr L)
+	static int set_Tag(IntPtr L)
 	{
-		try
-		{
-			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
-			PluginSet.FGUI.UIToast.ToastStaySeconds = arg0;
-			return 0;
-		}
-		catch (Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e);
-		}
-	}
+		object o = null;
 
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int set_OutImmediatelyWhenNew(IntPtr L)
-	{
 		try
 		{
-			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
-			PluginSet.FGUI.UIToast.OutImmediatelyWhenNew = arg0;
+			o = ToLua.ToObject(L, 1);
+			PluginSet.FGUI.UIToast obj = (PluginSet.FGUI.UIToast)o;
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 2);
+			obj.Tag = arg0;
 			return 0;
 		}
-		catch (Exception e)
+		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e);
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int set_EnableShowWhenLastOut(IntPtr L)
-	{
-		try
-		{
-			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
-			PluginSet.FGUI.UIToast.EnableShowWhenLastOut = arg0;
-			return 0;
-		}
-		catch (Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e);
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Tag on a nil value");
 		}
 	}
 
