@@ -209,30 +209,13 @@ public class PluginSet_FGUI_UIManagerWrap
 	{
 		try
 		{
-			int count = LuaDLL.lua_gettop(L);
-
-			if (count == 4 && TypeChecker.CheckTypes<int, float, bool, bool>(L, 1))
-			{
-				int arg0 = (int)LuaDLL.lua_tonumber(L, 1);
-				float arg1 = (float)LuaDLL.lua_tonumber(L, 2);
-				bool arg2 = LuaDLL.lua_toboolean(L, 3);
-				bool arg3 = LuaDLL.lua_toboolean(L, 4);
-				PluginSet.FGUI.UIManager.CreateToastRule(arg0, arg1, arg2, arg3);
-				return 0;
-			}
-			else if (count == 4 && TypeChecker.CheckTypes<string, float, bool, bool>(L, 1))
-			{
-				string arg0 = ToLua.ToString(L, 1);
-				float arg1 = (float)LuaDLL.lua_tonumber(L, 2);
-				bool arg2 = LuaDLL.lua_toboolean(L, 3);
-				bool arg3 = LuaDLL.lua_toboolean(L, 4);
-				PluginSet.FGUI.UIManager.CreateToastRule(arg0, arg1, arg2, arg3);
-				return 0;
-			}
-			else
-			{
-				return LuaDLL.luaL_throw(L, "invalid arguments to method: PluginSet.FGUI.UIManager.CreateToastRule");
-			}
+			ToLua.CheckArgsCount(L, 4);
+			string arg0 = ToLua.CheckString(L, 1);
+			float arg1 = (float)LuaDLL.luaL_checknumber(L, 2);
+			bool arg2 = LuaDLL.luaL_checkboolean(L, 3);
+			bool arg3 = LuaDLL.luaL_checkboolean(L, 4);
+			PluginSet.FGUI.UIManager.CreateToastRule(arg0, arg1, arg2, arg3);
+			return 0;
 		}
 		catch (Exception e)
 		{
