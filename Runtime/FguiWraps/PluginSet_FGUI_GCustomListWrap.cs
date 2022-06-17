@@ -12,6 +12,8 @@ public class PluginSet_FGUI_GCustomListWrap
 	{
 		L.BeginClass(typeof(PluginSet.FGUI.GCustomList), typeof(FairyGUI.GList));
 		L.RegFunction("SetMatchAlign", SetMatchAlign);
+		L.RegFunction("SetCustomListDelegate", SetCustomListDelegate);
+		L.RegFunction("Setup_AfterAdd", Setup_AfterAdd);
 		L.RegFunction("New", _CreatePluginSet_FGUI_GCustomList);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.EndClass();
@@ -50,6 +52,41 @@ public class PluginSet_FGUI_GCustomListWrap
 			PluginSet.FGUI.GCustomList obj = (PluginSet.FGUI.GCustomList)ToLua.CheckObject<PluginSet.FGUI.GCustomList>(L, 1);
 			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
 			obj.SetMatchAlign(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int SetCustomListDelegate(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			PluginSet.FGUI.GCustomList obj = (PluginSet.FGUI.GCustomList)ToLua.CheckObject<PluginSet.FGUI.GCustomList>(L, 1);
+			PluginSet.FGUI.CustomListDelegate arg0 = (PluginSet.FGUI.CustomListDelegate)ToLua.CheckObject<PluginSet.FGUI.CustomListDelegate>(L, 2);
+			obj.SetCustomListDelegate(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int Setup_AfterAdd(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 3);
+			PluginSet.FGUI.GCustomList obj = (PluginSet.FGUI.GCustomList)ToLua.CheckObject<PluginSet.FGUI.GCustomList>(L, 1);
+			FairyGUI.Utils.ByteBuffer arg0 = (FairyGUI.Utils.ByteBuffer)ToLua.CheckObject<FairyGUI.Utils.ByteBuffer>(L, 2);
+			int arg1 = (int)LuaDLL.luaL_checknumber(L, 3);
+			obj.Setup_AfterAdd(arg0, arg1);
 			return 0;
 		}
 		catch (Exception e)

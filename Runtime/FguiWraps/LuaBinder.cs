@@ -101,6 +101,8 @@ namespace PluginSet.FGuiToLua.LuaWrap
 			PluginSet_FGUI_GCustomLoaderWrap.Register(L);
 			PluginSet_FGUI_GCustomListWrap.Register(L);
 			PluginSet_FGUI_GCustomLoader3DWrap.Register(L);
+			PluginSet_FGUI_CustomListDelegateWrap.Register(L);
+			PluginSet_FGUI_FanListDelegateWrap.Register(L);
 			L.BeginModule("UISource");
 			L.RegFunction("LoadFunc", PluginSet_FGUI_UISource_LoadFunc);
 			L.EndModule();

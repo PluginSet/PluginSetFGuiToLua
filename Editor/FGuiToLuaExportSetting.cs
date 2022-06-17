@@ -115,6 +115,8 @@ namespace PluginSet.FGuiToLua.Editor
             typeof(GCustomList),
             typeof(GLoader3D),
             typeof(GCustomLoader3D),
+            typeof(CustomListDelegate),
+            typeof(FanListDelegate),
         };
 
         [ToLuaGenerateBaseType]
