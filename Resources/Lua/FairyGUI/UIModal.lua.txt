@@ -15,7 +15,7 @@ function UIModal:ctor(cmpCls, asyncMode, ...)
     assert(UIModal.ModalContentUrl, "Please set UIModal.ModalContentUrl first!")
 
     ---@type IComponent
-    self.m_cmpCls = cmpCls
+    self.m_cmpCls = cmpCls or false
     ---@type any[]
     self.m_ctorArgs = {...}
 
@@ -46,19 +46,22 @@ function UIModal:OnInit()
     local content = self.contentPane
     ---@type FairyGUI.GLoader
     local loader = content:GetChild("content")
-    loader.url = self.m_cmpCls.URL
+    local url = self.m_cmpCls and self.m_cmpCls.URL or nil
+    loader.url = url
     self.m_loader = loader
     self.m_loaderFrame = loader:AddBoardFrame()
 
     self.m_modalFrame = content:GetChild("frame") or false
-    self.m_content = loader.component
+    self.m_content = loader.component or false
     self:OnOffClickClose(self.m_closeWhenClickFrame)
 
-    local frame = self.m_content:GetChild("frame")
-    if frame then
-        self.closeButton = frame:GetChild("closeButton")
-        self.dragArea = frame:GetChild("dragArea")
-        self.contentArea = frame:GetChild("contentArea")
+    if self.m_content then
+        local frame = self.m_content:GetChild("frame")
+        if frame then
+            self.closeButton = frame:GetChild("closeButton")
+            self.dragArea = frame:GetChild("dragArea")
+            self.contentArea = frame:GetChild("contentArea")
+        end
     end
 
     local root = self.root

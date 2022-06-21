@@ -24,19 +24,20 @@ local UIWindow = class("UIWindow", UIWindowBase)
 ---@param asyncMode boolean
 function UIWindow:ctor(cmpCls, asyncMode, ...)
     ---@type IComponent
-    self.m_cmpCls = cmpCls
+    self.m_cmpCls = cmpCls or false
     ---@type any[]
     self.m_ctorArgs = {...}
     
     local packages = self:GetAllPackages()
-    UIWindowBase.ctor(self, cmpCls.URL, packages, asyncMode)
+    local url = cmpCls and cmpCls.URL or nil
+    UIWindowBase.ctor(self, url, packages, asyncMode)
 end
 
 ---GetAllPackages
 ---@return string[]
 function UIWindow:GetAllPackages()
     local extend = self:ExtendPackages()
-    local packages = self.m_cmpCls.PACKAGES
+    local packages = self.m_cmpCls and self.m_cmpCls.PACKAGES or table.empty
     if not extend then
         return packages
     end
