@@ -13,6 +13,8 @@ public class PluginSet_FGUI_GCustomListWrap
 		L.BeginClass(typeof(PluginSet.FGUI.GCustomList), typeof(FairyGUI.GList));
 		L.RegFunction("SetMatchAlign", SetMatchAlign);
 		L.RegFunction("SetCustomListDelegate", SetCustomListDelegate);
+		L.RegFunction("SetSizeLimit", SetSizeLimit);
+		L.RegFunction("ClearSizeLimit", ClearSizeLimit);
 		L.RegFunction("Setup_AfterAdd", Setup_AfterAdd);
 		L.RegFunction("New", _CreatePluginSet_FGUI_GCustomList);
 		L.RegFunction("__tostring", ToLua.op_ToString);
@@ -69,6 +71,40 @@ public class PluginSet_FGUI_GCustomListWrap
 			PluginSet.FGUI.GCustomList obj = (PluginSet.FGUI.GCustomList)ToLua.CheckObject<PluginSet.FGUI.GCustomList>(L, 1);
 			PluginSet.FGUI.CustomListDelegate arg0 = (PluginSet.FGUI.CustomListDelegate)ToLua.CheckObject<PluginSet.FGUI.CustomListDelegate>(L, 2);
 			obj.SetCustomListDelegate(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int SetSizeLimit(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 3);
+			PluginSet.FGUI.GCustomList obj = (PluginSet.FGUI.GCustomList)ToLua.CheckObject<PluginSet.FGUI.GCustomList>(L, 1);
+			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
+			float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
+			obj.SetSizeLimit(arg0, arg1);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int ClearSizeLimit(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			PluginSet.FGUI.GCustomList obj = (PluginSet.FGUI.GCustomList)ToLua.CheckObject<PluginSet.FGUI.GCustomList>(L, 1);
+			obj.ClearSizeLimit();
 			return 0;
 		}
 		catch (Exception e)
