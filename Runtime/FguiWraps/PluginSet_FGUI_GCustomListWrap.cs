@@ -18,6 +18,7 @@ public class PluginSet_FGUI_GCustomListWrap
 		L.RegFunction("Setup_AfterAdd", Setup_AfterAdd);
 		L.RegFunction("New", _CreatePluginSet_FGUI_GCustomList);
 		L.RegFunction("__tostring", ToLua.op_ToString);
+		L.RegVar("listSizeFollowContainer", get_listSizeFollowContainer, set_listSizeFollowContainer);
 		L.EndClass();
 	}
 
@@ -128,6 +129,44 @@ public class PluginSet_FGUI_GCustomListWrap
 		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_listSizeFollowContainer(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			PluginSet.FGUI.GCustomList obj = (PluginSet.FGUI.GCustomList)o;
+			bool ret = obj.listSizeFollowContainer;
+			LuaDLL.lua_pushboolean(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index listSizeFollowContainer on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_listSizeFollowContainer(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			PluginSet.FGUI.GCustomList obj = (PluginSet.FGUI.GCustomList)o;
+			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
+			obj.listSizeFollowContainer = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index listSizeFollowContainer on a nil value");
 		}
 	}
 }
