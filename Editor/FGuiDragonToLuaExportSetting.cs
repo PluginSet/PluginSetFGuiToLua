@@ -29,7 +29,11 @@ namespace PluginSet.FGuiToLua.Editor
         [ToLuaGenerateClass]
         public static Type[] customTypeList =
         {                
+            typeof(DragonBones.SortingMode),
+            typeof(DragonBones.ColorTransform),
             typeof(DragonBones.BaseObject),
+            typeof(DragonBones.Animation),
+            typeof(DragonBones.AnimationState),
             typeof(DragonBones.DragonBoneEventDispatcher),
             typeof(DragonBones.DragonBonesData),
             typeof(DragonBones.UnityArmatureComponent),

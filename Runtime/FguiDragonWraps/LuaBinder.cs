@@ -14,7 +14,11 @@ namespace PluginSet.FGuiToLua.LuaWrap.DragonWrap
 			float t = Time.realtimeSinceStartup;
 			L.BeginModule(null);
 			L.BeginModule("DragonBones");
+			DragonBones_SortingModeWrap.Register(L);
+			DragonBones_ColorTransformWrap.Register(L);
 			DragonBones_BaseObjectWrap.Register(L);
+			DragonBones_AnimationWrap.Register(L);
+			DragonBones_AnimationStateWrap.Register(L);
 			DragonBones_DragonBoneEventDispatcherWrap.Register(L);
 			DragonBones_DragonBonesDataWrap.Register(L);
 			DragonBones_UnityArmatureComponentWrap.Register(L);
