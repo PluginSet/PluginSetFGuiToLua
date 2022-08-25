@@ -275,6 +275,18 @@ public class PluginSet_FGUI_UIManagerWrap
 				ToLua.PushObject(L, o);
 				return 1;
 			}
+			else if (count == 6)
+			{
+				string arg0 = ToLua.CheckString(L, 1);
+				string arg1 = ToLua.CheckString(L, 2);
+				string arg2 = ToLua.CheckString(L, 3);
+				int arg3 = (int)LuaDLL.luaL_checknumber(L, 4);
+				string arg4 = ToLua.CheckString(L, 5);
+				int arg5 = (int)LuaDLL.luaL_checknumber(L, 6);
+				PluginSet.FGUI.UIToast o = PluginSet.FGUI.UIManager.ShowToast(arg0, arg1, arg2, arg3, arg4, arg5);
+				ToLua.PushObject(L, o);
+				return 1;
+			}
 			else
 			{
 				return LuaDLL.luaL_throw(L, "invalid arguments to method: PluginSet.FGUI.UIManager.ShowToast");
