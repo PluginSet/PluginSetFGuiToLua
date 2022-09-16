@@ -20,6 +20,7 @@ public class PluginSet_FGUI_UIWindowBaseWrap
 		L.RegVar("EnterAction", get_EnterAction, set_EnterAction);
 		L.RegVar("ExitAction", get_ExitAction, set_ExitAction);
 		L.RegVar("Component", get_Component, null);
+		L.RegVar("IsShown", get_IsShown, null);
 		L.RegVar("Tag", get_Tag, set_Tag);
 		L.EndClass();
 	}
@@ -191,6 +192,25 @@ public class PluginSet_FGUI_UIWindowBaseWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Component on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_IsShown(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			PluginSet.FGUI.UIWindowBase obj = (PluginSet.FGUI.UIWindowBase)o;
+			bool ret = obj.IsShown;
+			LuaDLL.lua_pushboolean(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index IsShown on a nil value");
 		}
 	}
 
