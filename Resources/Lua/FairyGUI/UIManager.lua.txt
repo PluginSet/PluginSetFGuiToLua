@@ -74,6 +74,29 @@ function UIManager.RegisterWindow(name, classname, isSingleton, tag)
     }
 end
 
+---FindWindow
+---@param name string
+---@return UIWindow
+function UIManager.FindWindow(name)
+    local info = s_windowInfos[name]
+    local cls = info and info.class
+    if not cls then return nil end
+    return cls:GetInstance() or nil
+end
+
+--public static bool IsWindowShown(string name, bool isStrict = true)
+
+---IsWindowShown
+---@param name string
+---@param isStrict boolean|nil default true
+---@return boolean
+function UIManager.IsWindowShown(name, isStrict)
+    isStrict = isStrict ~= false
+    local inst = UIManager.FindWindow(name)
+    if not inst then return false end
+    return not isStrict or inst.IsShown or false
+end
+
 ---ShowView
 ---@param name string the name RegisterWindow used
 function UIManager.ShowView(name, ...)
