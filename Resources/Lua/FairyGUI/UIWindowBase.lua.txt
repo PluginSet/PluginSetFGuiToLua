@@ -101,6 +101,11 @@ end
 function UIWindowBase:OnInit()
 end
 
+---@overload 展示到舞台时会调用该方法 OnShown之前
+function UIWindowBase:DoEnter()
+    
+end
+
 ---@overload 展示到舞台时会调用该方法
 function UIWindowBase:OnShown()
 
@@ -109,6 +114,11 @@ end
 ---@overload 移除舞台时会调用该方法
 function UIWindowBase:OnHide()
 
+end
+
+---@overload 移除舞台时会调用该方法 OnHide之后
+function UIWindowBase:DoExit()
+    
 end
 
 ---@overload 窗口对象销毁前会调用该方法
