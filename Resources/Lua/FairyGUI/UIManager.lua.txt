@@ -175,13 +175,15 @@ function UIManager.ShowOn(layer, name, ...)
     end
     
     if win then
+        win.name = name
+        win.Tag = info.tag
         win:TryShowAgain(...)
     else
         win = cls.new(...)
+        win.name = name
+        win.Tag = info.tag
         win:ShowOn(layer)
     end
-    win.name = name
-    win.Tag = info.tag
     return win
 end
 
@@ -201,14 +203,6 @@ function UIManager.HideModalWait(key)
     if not next(s_lockFlags) then
         UIManagerNative.HideModalWait()
     end
-end
-
-function UIManager.IsWindowShow(sName)
-    local child = LayerModal:GetChild(sName)
-    if child then
-        return true
-    end
-    return false
 end
 
 return UIManager
