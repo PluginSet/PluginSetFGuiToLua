@@ -38,6 +38,12 @@ namespace PluginSet.FGuiToLua.Editor
         public static Dictionary<Type, Type> baseTypes = new Dictionary<Type, Type>()
         {
         };
+        
+        [ToLuaGenerateBlackList]
+        public static Dictionary<Type, IEnumerable<string>> blackList = new Dictionary<Type, IEnumerable<string>>
+        {
+            {typeof(Spine.Unity.SkeletonRenderer), new[] {"Start", "EditorSkipSkinSync"}},
+        };
     }
 #endif
 }

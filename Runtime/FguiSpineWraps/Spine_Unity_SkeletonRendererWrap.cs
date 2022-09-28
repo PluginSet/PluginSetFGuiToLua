@@ -13,7 +13,6 @@ public class Spine_Unity_SkeletonRendererWrap
 		L.BeginClass(typeof(Spine.Unity.SkeletonRenderer), typeof(UnityEngine.MonoBehaviour));
 		L.RegFunction("SetMeshSettings", SetMeshSettings);
 		L.RegFunction("Awake", Awake);
-		L.RegFunction("Start", Start);
 		L.RegFunction("ClearState", ClearState);
 		L.RegFunction("EnsureMeshGeneratorCapacity", EnsureMeshGeneratorCapacity);
 		L.RegFunction("Initialize", Initialize);
@@ -50,7 +49,6 @@ public class Spine_Unity_SkeletonRendererWrap
 		L.RegVar("valid", get_valid, set_valid);
 		L.RegVar("skeleton", get_skeleton, set_skeleton);
 		L.RegVar("SUBMESH_DUMMY_PARAM_ID", get_SUBMESH_DUMMY_PARAM_ID, null);
-		L.RegVar("EditorSkipSkinSync", get_EditorSkipSkinSync, set_EditorSkipSkinSync);
 		L.RegVar("UpdateMode", get_UpdateMode, set_UpdateMode);
 		L.RegVar("CustomMaterialOverride", get_CustomMaterialOverride, null);
 		L.RegVar("CustomSlotMaterials", get_CustomSlotMaterials, null);
@@ -90,22 +88,6 @@ public class Spine_Unity_SkeletonRendererWrap
 			ToLua.CheckArgsCount(L, 1);
 			Spine.Unity.SkeletonRenderer obj = (Spine.Unity.SkeletonRenderer)ToLua.CheckObject<Spine.Unity.SkeletonRenderer>(L, 1);
 			obj.Awake();
-			return 0;
-		}
-		catch (Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e);
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int Start(IntPtr L)
-	{
-		try
-		{
-			ToLua.CheckArgsCount(L, 1);
-			Spine.Unity.SkeletonRenderer obj = (Spine.Unity.SkeletonRenderer)ToLua.CheckObject<Spine.Unity.SkeletonRenderer>(L, 1);
-			obj.Start();
 			return 0;
 		}
 		catch (Exception e)
@@ -798,25 +780,6 @@ public class Spine_Unity_SkeletonRendererWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int get_EditorSkipSkinSync(IntPtr L)
-	{
-		object o = null;
-
-		try
-		{
-			o = ToLua.ToObject(L, 1);
-			Spine.Unity.SkeletonRenderer obj = (Spine.Unity.SkeletonRenderer)o;
-			bool ret = obj.EditorSkipSkinSync;
-			LuaDLL.lua_pushboolean(L, ret);
-			return 1;
-		}
-		catch(Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e, o, "attempt to index EditorSkipSkinSync on a nil value");
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_UpdateMode(IntPtr L)
 	{
 		object o = null;
@@ -1316,25 +1279,6 @@ public class Spine_Unity_SkeletonRendererWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index skeleton on a nil value");
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int set_EditorSkipSkinSync(IntPtr L)
-	{
-		object o = null;
-
-		try
-		{
-			o = ToLua.ToObject(L, 1);
-			Spine.Unity.SkeletonRenderer obj = (Spine.Unity.SkeletonRenderer)o;
-			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
-			obj.EditorSkipSkinSync = arg0;
-			return 0;
-		}
-		catch(Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e, o, "attempt to index EditorSkipSkinSync on a nil value");
 		}
 	}
 
