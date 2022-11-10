@@ -15,6 +15,8 @@ public class PluginSet_FGUI_UIManagerWrap
 		L.RegFunction("Purge", Purge);
 		L.RegFunction("SetDefaultToastUrl", SetDefaultToastUrl);
 		L.RegFunction("AddLayer", AddLayer);
+		L.RegFunction("FindWindow", FindWindow);
+		L.RegFunction("IsWindowShown", IsWindowShown);
 		L.RegFunction("ShowOn", ShowOn);
 		L.RegFunction("ShowView", ShowView);
 		L.RegFunction("ShowModal", ShowModal);
@@ -123,6 +125,56 @@ public class PluginSet_FGUI_UIManagerWrap
 			else
 			{
 				return LuaDLL.luaL_throw(L, "invalid arguments to method: PluginSet.FGUI.UIManager.AddLayer");
+			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int FindWindow(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			string arg0 = ToLua.CheckString(L, 1);
+			PluginSet.FGUI.UIWindow o = PluginSet.FGUI.UIManager.FindWindow(arg0);
+			ToLua.PushObject(L, o);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int IsWindowShown(IntPtr L)
+	{
+		try
+		{
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 1)
+			{
+				string arg0 = ToLua.CheckString(L, 1);
+				bool o = PluginSet.FGUI.UIManager.IsWindowShown(arg0);
+				LuaDLL.lua_pushboolean(L, o);
+				return 1;
+			}
+			else if (count == 2)
+			{
+				string arg0 = ToLua.CheckString(L, 1);
+				bool arg1 = LuaDLL.luaL_checkboolean(L, 2);
+				bool o = PluginSet.FGUI.UIManager.IsWindowShown(arg0, arg1);
+				LuaDLL.lua_pushboolean(L, o);
+				return 1;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: PluginSet.FGUI.UIManager.IsWindowShown");
 			}
 		}
 		catch (Exception e)

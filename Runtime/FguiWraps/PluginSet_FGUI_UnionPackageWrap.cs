@@ -15,6 +15,8 @@ public class PluginSet_FGUI_UnionPackageWrap
 		L.RegFunction("SetCurrentBranch", SetCurrentBranch);
 		L.RegFunction("AddUnionBranch", AddUnionBranch);
 		L.RegFunction("IsBranchPackage", IsBranchPackage);
+		L.RegFunction("IsUnionPackageLoaded", IsUnionPackageLoaded);
+		L.RegFunction("RetainIfLoaded", RetainIfLoaded);
 		L.RegFunction("RetainUnionPackage", RetainUnionPackage);
 		L.RegFunction("ReleaseUnionPackage", ReleaseUnionPackage);
 		L.RegFunction("DontReleasePackage", DontReleasePackage);
@@ -86,6 +88,40 @@ public class PluginSet_FGUI_UnionPackageWrap
 			ToLua.CheckArgsCount(L, 1);
 			string arg0 = ToLua.CheckString(L, 1);
 			bool o = PluginSet.FGUI.UnionPackage.IsBranchPackage(arg0);
+			LuaDLL.lua_pushboolean(L, o);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int IsUnionPackageLoaded(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			string arg0 = ToLua.CheckString(L, 1);
+			bool o = PluginSet.FGUI.UnionPackage.IsUnionPackageLoaded(arg0);
+			LuaDLL.lua_pushboolean(L, o);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int RetainIfLoaded(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			string arg0 = ToLua.CheckString(L, 1);
+			bool o = PluginSet.FGUI.UnionPackage.RetainIfLoaded(arg0);
 			LuaDLL.lua_pushboolean(L, o);
 			return 1;
 		}
