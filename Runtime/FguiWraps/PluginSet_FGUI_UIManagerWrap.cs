@@ -12,6 +12,7 @@ public class PluginSet_FGUI_UIManagerWrap
 	{
 		L.BeginStaticLibs("UIManager");
 		L.RegFunction("InitWithSafeArea", InitWithSafeArea);
+		L.RegFunction("ApplyViewRotation", ApplyViewRotation);
 		L.RegFunction("Purge", Purge);
 		L.RegFunction("SetDefaultToastUrl", SetDefaultToastUrl);
 		L.RegFunction("AddLayer", AddLayer);
@@ -55,12 +56,47 @@ public class PluginSet_FGUI_UIManagerWrap
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 4);
-			float arg0 = (float)LuaDLL.luaL_checknumber(L, 1);
-			float arg1 = (float)LuaDLL.luaL_checknumber(L, 2);
-			float arg2 = (float)LuaDLL.luaL_checknumber(L, 3);
-			float arg3 = (float)LuaDLL.luaL_checknumber(L, 4);
-			PluginSet.FGUI.UIManager.InitWithSafeArea(arg0, arg1, arg2, arg3);
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 4)
+			{
+				float arg0 = (float)LuaDLL.luaL_checknumber(L, 1);
+				float arg1 = (float)LuaDLL.luaL_checknumber(L, 2);
+				float arg2 = (float)LuaDLL.luaL_checknumber(L, 3);
+				float arg3 = (float)LuaDLL.luaL_checknumber(L, 4);
+				PluginSet.FGUI.UIManager.InitWithSafeArea(arg0, arg1, arg2, arg3);
+				return 0;
+			}
+			else if (count == 6)
+			{
+				float arg0 = (float)LuaDLL.luaL_checknumber(L, 1);
+				float arg1 = (float)LuaDLL.luaL_checknumber(L, 2);
+				float arg2 = (float)LuaDLL.luaL_checknumber(L, 3);
+				float arg3 = (float)LuaDLL.luaL_checknumber(L, 4);
+				float arg4 = (float)LuaDLL.luaL_checknumber(L, 5);
+				float arg5 = (float)LuaDLL.luaL_checknumber(L, 6);
+				PluginSet.FGUI.UIManager.InitWithSafeArea(arg0, arg1, arg2, arg3, arg4, arg5);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: PluginSet.FGUI.UIManager.InitWithSafeArea");
+			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int ApplyViewRotation(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			int arg0 = (int)LuaDLL.luaL_checknumber(L, 1);
+			PluginSet.FGUI.UIManager.ApplyViewRotation(arg0);
 			return 0;
 		}
 		catch (Exception e)

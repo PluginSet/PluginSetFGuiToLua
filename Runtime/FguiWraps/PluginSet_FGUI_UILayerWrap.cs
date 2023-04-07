@@ -56,13 +56,32 @@ public class PluginSet_FGUI_UILayerWrap
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 4);
-			float arg0 = (float)LuaDLL.luaL_checknumber(L, 1);
-			float arg1 = (float)LuaDLL.luaL_checknumber(L, 2);
-			float arg2 = (float)LuaDLL.luaL_checknumber(L, 3);
-			float arg3 = (float)LuaDLL.luaL_checknumber(L, 4);
-			PluginSet.FGUI.UILayer.SetSafeArea(arg0, arg1, arg2, arg3);
-			return 0;
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 4)
+			{
+				float arg0 = (float)LuaDLL.luaL_checknumber(L, 1);
+				float arg1 = (float)LuaDLL.luaL_checknumber(L, 2);
+				float arg2 = (float)LuaDLL.luaL_checknumber(L, 3);
+				float arg3 = (float)LuaDLL.luaL_checknumber(L, 4);
+				PluginSet.FGUI.UILayer.SetSafeArea(arg0, arg1, arg2, arg3);
+				return 0;
+			}
+			else if (count == 6)
+			{
+				float arg0 = (float)LuaDLL.luaL_checknumber(L, 1);
+				float arg1 = (float)LuaDLL.luaL_checknumber(L, 2);
+				float arg2 = (float)LuaDLL.luaL_checknumber(L, 3);
+				float arg3 = (float)LuaDLL.luaL_checknumber(L, 4);
+				float arg4 = (float)LuaDLL.luaL_checknumber(L, 5);
+				float arg5 = (float)LuaDLL.luaL_checknumber(L, 6);
+				PluginSet.FGUI.UILayer.SetSafeArea(arg0, arg1, arg2, arg3, arg4, arg5);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: PluginSet.FGUI.UILayer.SetSafeArea");
+			}
 		}
 		catch (Exception e)
 		{
