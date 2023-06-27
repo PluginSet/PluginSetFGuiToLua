@@ -11,6 +11,7 @@ public class PluginSet_FGUI_GCustomLoader3DWrap
 	public static void Register(LuaState L)
 	{
 		L.BeginClass(typeof(PluginSet.FGUI.GCustomLoader3D), typeof(FairyGUI.GLoader3D));
+		L.RegFunction("SetData", SetData);
 		L.RegFunction("Dispose", Dispose);
 		L.RegFunction("SetWrapScale", SetWrapScale);
 		L.RegFunction("SetWrapRotation", SetWrapRotation);
@@ -18,6 +19,7 @@ public class PluginSet_FGUI_GCustomLoader3DWrap
 		L.RegFunction("New", _CreatePluginSet_FGUI_GCustomLoader3D);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.RegVar("WrapTransform", get_WrapTransform, null);
+		L.RegVar("WrapHelper", get_WrapHelper, null);
 		L.EndClass();
 	}
 
@@ -38,6 +40,23 @@ public class PluginSet_FGUI_GCustomLoader3DWrap
 			{
 				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: PluginSet.FGUI.GCustomLoader3D.New");
 			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int SetData(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			PluginSet.FGUI.GCustomLoader3D obj = (PluginSet.FGUI.GCustomLoader3D)ToLua.CheckObject<PluginSet.FGUI.GCustomLoader3D>(L, 1);
+			object arg0 = ToLua.ToVarObject(L, 2);
+			obj.SetData(arg0);
+			return 0;
 		}
 		catch (Exception e)
 		{
@@ -143,6 +162,25 @@ public class PluginSet_FGUI_GCustomLoader3DWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index WrapTransform on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_WrapHelper(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			PluginSet.FGUI.GCustomLoader3D obj = (PluginSet.FGUI.GCustomLoader3D)o;
+			PluginSet.FGUI.WrapHelper ret = obj.WrapHelper;
+			ToLua.Push(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index WrapHelper on a nil value");
 		}
 	}
 }
