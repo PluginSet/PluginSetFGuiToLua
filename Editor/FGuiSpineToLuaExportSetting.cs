@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using PluginSet.FGUI;
+using UnityEngine;
 
 namespace PluginSet.FGuiToLua.Editor
 {
@@ -32,6 +33,15 @@ namespace PluginSet.FGuiToLua.Editor
             typeof(Spine.Unity.SkeletonDataAsset),
             typeof(Spine.Unity.SkeletonAnimation),
             typeof(Spine.Unity.SkeletonRenderer),
+        };
+
+        [ToLuaGenerateTempDrop]
+        public static Type[] dropTypeList =
+        {
+	        typeof(Component),
+	        typeof(MonoBehaviour),
+	        typeof(Transform),
+	        typeof(RectTransform),
         };
 
         [ToLuaGenerateBaseType]

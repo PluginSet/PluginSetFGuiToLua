@@ -42,6 +42,8 @@ public class FairyGUI_GComponentWrap
 		L.RegFunction("HandleControllerChanged", HandleControllerChanged);
 		L.RegFunction("SetBoundsChangedFlag", SetBoundsChangedFlag);
 		L.RegFunction("EnsureBoundsCorrect", EnsureBoundsCorrect);
+		L.RegFunction("GetSnappingPosition", GetSnappingPosition);
+		L.RegFunction("GetSnappingPositionWithDir", GetSnappingPositionWithDir);
 		L.RegFunction("ConstructFromResource", ConstructFromResource);
 		L.RegFunction("ConstructFromXML", ConstructFromXML);
 		L.RegFunction("Setup_AfterAdd", Setup_AfterAdd);
@@ -60,6 +62,7 @@ public class FairyGUI_GComponentWrap
 		L.RegVar("tabStopChildren", get_tabStopChildren, set_tabStopChildren);
 		L.RegVar("numChildren", get_numChildren, null);
 		L.RegVar("Controllers", get_Controllers, null);
+		L.RegVar("Transitions", get_Transitions, null);
 		L.RegVar("clipSoftness", get_clipSoftness, set_clipSoftness);
 		L.RegVar("mask", get_mask, set_mask);
 		L.RegVar("reversedMask", get_reversedMask, set_reversedMask);
@@ -705,6 +708,48 @@ public class FairyGUI_GComponentWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int GetSnappingPosition(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 3);
+			FairyGUI.GComponent obj = (FairyGUI.GComponent)ToLua.CheckObject<FairyGUI.GComponent>(L, 1);
+			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
+			float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
+			obj.GetSnappingPosition(ref arg0, ref arg1);
+			LuaDLL.lua_pushnumber(L, arg0);
+			LuaDLL.lua_pushnumber(L, arg1);
+			return 2;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int GetSnappingPositionWithDir(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 5);
+			FairyGUI.GComponent obj = (FairyGUI.GComponent)ToLua.CheckObject<FairyGUI.GComponent>(L, 1);
+			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
+			float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
+			float arg2 = (float)LuaDLL.luaL_checknumber(L, 4);
+			float arg3 = (float)LuaDLL.luaL_checknumber(L, 5);
+			obj.GetSnappingPositionWithDir(ref arg0, ref arg1, arg2, arg3);
+			LuaDLL.lua_pushnumber(L, arg0);
+			LuaDLL.lua_pushnumber(L, arg1);
+			return 2;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int ConstructFromResource(IntPtr L)
 	{
 		try
@@ -997,6 +1042,25 @@ public class FairyGUI_GComponentWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Controllers on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_Transitions(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GComponent obj = (FairyGUI.GComponent)o;
+			System.Collections.Generic.List<FairyGUI.Transition> ret = obj.Transitions;
+			ToLua.PushSealed(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index Transitions on a nil value");
 		}
 	}
 

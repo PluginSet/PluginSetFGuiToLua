@@ -38,11 +38,11 @@ public class FairyGUI_GListWrap
 		L.RegFunction("SetVirtual", SetVirtual);
 		L.RegFunction("SetVirtualAndLoop", SetVirtualAndLoop);
 		L.RegFunction("RefreshVirtualList", RefreshVirtualList);
+		L.RegFunction("GetSnappingPositionWithDir", GetSnappingPositionWithDir);
 		L.RegFunction("Setup_BeforeAdd", Setup_BeforeAdd);
 		L.RegFunction("Setup_AfterAdd", Setup_AfterAdd);
 		L.RegFunction("New", _CreateFairyGUI_GList);
 		L.RegFunction("__tostring", ToLua.op_ToString);
-		L.RegVar("defaultItem", get_defaultItem, set_defaultItem);
 		L.RegVar("foldInvisibleItems", get_foldInvisibleItems, set_foldInvisibleItems);
 		L.RegVar("selectionMode", get_selectionMode, set_selectionMode);
 		L.RegVar("itemRenderer", get_itemRenderer, set_itemRenderer);
@@ -50,6 +50,7 @@ public class FairyGUI_GListWrap
 		L.RegVar("scrollItemToViewOnClick", get_scrollItemToViewOnClick, set_scrollItemToViewOnClick);
 		L.RegVar("onClickItem", get_onClickItem, null);
 		L.RegVar("onRightClickItem", get_onRightClickItem, null);
+		L.RegVar("defaultItem", get_defaultItem, set_defaultItem);
 		L.RegVar("layout", get_layout, set_layout);
 		L.RegVar("lineCount", get_lineCount, set_lineCount);
 		L.RegVar("columnCount", get_columnCount, set_columnCount);
@@ -663,6 +664,28 @@ public class FairyGUI_GListWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int GetSnappingPositionWithDir(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 5);
+			FairyGUI.GList obj = (FairyGUI.GList)ToLua.CheckObject<FairyGUI.GList>(L, 1);
+			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
+			float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
+			float arg2 = (float)LuaDLL.luaL_checknumber(L, 4);
+			float arg3 = (float)LuaDLL.luaL_checknumber(L, 5);
+			obj.GetSnappingPositionWithDir(ref arg0, ref arg1, arg2, arg3);
+			LuaDLL.lua_pushnumber(L, arg0);
+			LuaDLL.lua_pushnumber(L, arg1);
+			return 2;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int Setup_BeforeAdd(IntPtr L)
 	{
 		try
@@ -695,25 +718,6 @@ public class FairyGUI_GListWrap
 		catch (Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e);
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int get_defaultItem(IntPtr L)
-	{
-		object o = null;
-
-		try
-		{
-			o = ToLua.ToObject(L, 1);
-			FairyGUI.GList obj = (FairyGUI.GList)o;
-			string ret = obj.defaultItem;
-			LuaDLL.lua_pushstring(L, ret);
-			return 1;
-		}
-		catch(Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e, o, "attempt to index defaultItem on a nil value");
 		}
 	}
 
@@ -847,6 +851,25 @@ public class FairyGUI_GListWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index onRightClickItem on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_defaultItem(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GList obj = (FairyGUI.GList)o;
+			string ret = obj.defaultItem;
+			LuaDLL.lua_pushstring(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index defaultItem on a nil value");
 		}
 	}
 
@@ -1136,25 +1159,6 @@ public class FairyGUI_GListWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int set_defaultItem(IntPtr L)
-	{
-		object o = null;
-
-		try
-		{
-			o = ToLua.ToObject(L, 1);
-			FairyGUI.GList obj = (FairyGUI.GList)o;
-			string arg0 = ToLua.CheckString(L, 2);
-			obj.defaultItem = arg0;
-			return 0;
-		}
-		catch(Exception e)
-		{
-			return LuaDLL.toluaL_exception(L, e, o, "attempt to index defaultItem on a nil value");
-		}
-	}
-
-	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int set_foldInvisibleItems(IntPtr L)
 	{
 		object o = null;
@@ -1246,6 +1250,25 @@ public class FairyGUI_GListWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index scrollItemToViewOnClick on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_defaultItem(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GList obj = (FairyGUI.GList)o;
+			string arg0 = ToLua.CheckString(L, 2);
+			obj.defaultItem = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index defaultItem on a nil value");
 		}
 	}
 

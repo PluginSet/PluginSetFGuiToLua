@@ -12,6 +12,7 @@ public class PluginSet_FGUI_UISourceWrap
 	{
 		L.BeginClass(typeof(PluginSet.FGUI.UISource), typeof(System.Object));
 		L.RegFunction("Load", Load);
+		L.RegFunction("Cancel", Cancel);
 		L.RegFunction("New", _CreatePluginSet_FGUI_UISource);
 		L.RegFunction("__tostring", ToLua.op_ToString);
 		L.RegVar("loaded", get_loaded, null);
@@ -61,6 +62,22 @@ public class PluginSet_FGUI_UISourceWrap
 			PluginSet.FGUI.UISource obj = (PluginSet.FGUI.UISource)ToLua.CheckObject<PluginSet.FGUI.UISource>(L, 1);
 			FairyGUI.UILoadCallback arg0 = (FairyGUI.UILoadCallback)ToLua.CheckDelegate<FairyGUI.UILoadCallback>(L, 2);
 			obj.Load(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int Cancel(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			PluginSet.FGUI.UISource obj = (PluginSet.FGUI.UISource)ToLua.CheckObject<PluginSet.FGUI.UISource>(L, 1);
+			obj.Cancel();
 			return 0;
 		}
 		catch (Exception e)

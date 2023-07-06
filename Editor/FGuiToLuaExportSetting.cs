@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using FairyGUI;
 using FairyGUI.Utils;
 using PluginSet.FGUI;
+using UnityEngine;
 
 namespace PluginSet.FGuiToLua.Editor
 {
@@ -117,6 +118,15 @@ namespace PluginSet.FGuiToLua.Editor
             typeof(GCustomLoader3D),
             typeof(CustomListDelegate),
             typeof(FanListDelegate),
+        };
+
+        [ToLuaGenerateTempDrop]
+        public static Type[] dropTypeList =
+        {
+	        typeof(Component),
+	        typeof(MonoBehaviour),
+	        typeof(Transform),
+	        typeof(RectTransform),
         };
 
         [ToLuaGenerateBaseType]

@@ -13,6 +13,8 @@ public class FairyGUI_GLoaderWrap
 		L.BeginClass(typeof(FairyGUI.GLoader), typeof(FairyGUI.GObject));
 		L.RegFunction("Dispose", Dispose);
 		L.RegFunction("Advance", Advance);
+		L.RegFunction("onExternalLoadSuccess", onExternalLoadSuccess);
+		L.RegFunction("onExternalLoadFailed", onExternalLoadFailed);
 		L.RegFunction("Setup_BeforeAdd", Setup_BeforeAdd);
 		L.RegFunction("New", _CreateFairyGUI_GLoader);
 		L.RegFunction("__tostring", ToLua.op_ToString);
@@ -93,6 +95,39 @@ public class FairyGUI_GLoaderWrap
 			FairyGUI.GLoader obj = (FairyGUI.GLoader)ToLua.CheckObject<FairyGUI.GLoader>(L, 1);
 			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
 			obj.Advance(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int onExternalLoadSuccess(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			FairyGUI.GLoader obj = (FairyGUI.GLoader)ToLua.CheckObject<FairyGUI.GLoader>(L, 1);
+			FairyGUI.NTexture arg0 = (FairyGUI.NTexture)ToLua.CheckObject<FairyGUI.NTexture>(L, 2);
+			obj.onExternalLoadSuccess(arg0);
+			return 0;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int onExternalLoadFailed(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			FairyGUI.GLoader obj = (FairyGUI.GLoader)ToLua.CheckObject<FairyGUI.GLoader>(L, 1);
+			obj.onExternalLoadFailed();
 			return 0;
 		}
 		catch (Exception e)

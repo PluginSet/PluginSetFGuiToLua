@@ -33,6 +33,7 @@ public class FairyGUI_TransitionWrap
 		L.RegVar("invalidateBatchingEveryFrame", get_invalidateBatchingEveryFrame, set_invalidateBatchingEveryFrame);
 		L.RegVar("name", get_name, null);
 		L.RegVar("playing", get_playing, null);
+		L.RegVar("totalDuration", get_totalDuration, null);
 		L.RegVar("timeScale", get_timeScale, set_timeScale);
 		L.RegVar("ignoreEngineTimeScale", get_ignoreEngineTimeScale, set_ignoreEngineTimeScale);
 		L.EndClass();
@@ -483,6 +484,25 @@ public class FairyGUI_TransitionWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index playing on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_totalDuration(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.Transition obj = (FairyGUI.Transition)o;
+			float ret = obj.totalDuration;
+			LuaDLL.lua_pushnumber(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index totalDuration on a nil value");
 		}
 	}
 

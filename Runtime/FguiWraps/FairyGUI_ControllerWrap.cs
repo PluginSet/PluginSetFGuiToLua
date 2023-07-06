@@ -31,7 +31,7 @@ public class FairyGUI_ControllerWrap
 		L.RegVar("onChanged", get_onChanged, null);
 		L.RegVar("selectedIndex", get_selectedIndex, set_selectedIndex);
 		L.RegVar("selectedPage", get_selectedPage, set_selectedPage);
-		L.RegVar("previsousIndex", get_previsousIndex, null);
+		L.RegVar("previousIndex", get_previousIndex, null);
 		L.RegVar("previousPage", get_previousPage, null);
 		L.RegVar("pageCount", get_pageCount, null);
 		L.EndClass();
@@ -378,7 +378,7 @@ public class FairyGUI_ControllerWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-	static int get_previsousIndex(IntPtr L)
+	static int get_previousIndex(IntPtr L)
 	{
 		object o = null;
 
@@ -386,13 +386,13 @@ public class FairyGUI_ControllerWrap
 		{
 			o = ToLua.ToObject(L, 1);
 			FairyGUI.Controller obj = (FairyGUI.Controller)o;
-			int ret = obj.previsousIndex;
+			int ret = obj.previousIndex;
 			LuaDLL.lua_pushinteger(L, ret);
 			return 1;
 		}
 		catch(Exception e)
 		{
-			return LuaDLL.toluaL_exception(L, e, o, "attempt to index previsousIndex on a nil value");
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index previousIndex on a nil value");
 		}
 	}
 

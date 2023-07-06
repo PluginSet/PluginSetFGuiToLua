@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using PluginSet.FGUI;
+using UnityEngine;
 
 namespace PluginSet.FGuiToLua.Editor
 {
@@ -38,6 +39,15 @@ namespace PluginSet.FGuiToLua.Editor
             typeof(DragonBones.DragonBonesData),
             typeof(DragonBones.UnityArmatureComponent),
             typeof(DragonBones.UnityEventDispatcher<DragonBones.EventObject>),
+        };
+
+        [ToLuaGenerateTempDrop]
+        public static Type[] dropTypeList =
+        {
+	        typeof(Component),
+	        typeof(MonoBehaviour),
+	        typeof(Transform),
+	        typeof(RectTransform),
         };
 
         [ToLuaGenerateBaseType]
