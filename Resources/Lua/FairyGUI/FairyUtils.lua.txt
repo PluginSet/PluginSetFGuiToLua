@@ -72,6 +72,10 @@ function fguiUtils.Component(name, base)
     ---@overload
     function cls:InitMembers()
     end
+
+    function cls:dtor()
+        tolua.setpeer(self, nil)
+    end
     
     return cls
 end
