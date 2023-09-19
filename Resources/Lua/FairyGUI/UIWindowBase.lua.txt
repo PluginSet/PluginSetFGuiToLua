@@ -131,7 +131,9 @@ function UIWindowBase:OnDispose()
     self:OffAllClick()
     removeWindowInstance(self)
     self:StopDelayCloseTimer()
-    self:OnDestroy()
+    if self.contentPane then
+        self:OnDestroy()
+    end
     --self.contentPane:Dispose()
     --self.contentPane = nil
 end

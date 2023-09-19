@@ -104,7 +104,9 @@ end
 
 function UIModal:OnDispose()
     UIModal.super.OnDispose(self)
-    self.m_loader.url = nil
+    if self.m_loader and not self.m_loader.isDisposed then
+        self.m_loader.url = nil
+    end
 end
 
 return UIModal
