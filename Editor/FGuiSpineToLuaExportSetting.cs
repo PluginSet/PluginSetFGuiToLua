@@ -6,7 +6,7 @@ using UnityEngine;
 namespace PluginSet.FGuiToLua.Editor
 {
 #if FAIRYGUI_SPINE
-    [ToLuaGenerateSetting("PluginSet.FGuiToLua.LuaWrap.SpineWrap", "FguiSpineWraps", "com.pluginset.fguitolua", -999999, "#if FAIRYGUI_TOLUA && FAIRYGUI_SPINE", "#endif")]
+    [ToLuaGenerateSetting("PluginSet.FGuiToLua.LuaWrap.SpineWrap", "Scripts/ToLuaWrapper/FguiSpine", "com.pluginset.fguitolua", -999999, "#if FAIRYGUI_TOLUA && FAIRYGUI_SPINE", "#endif")]
     public static class FGuiSpineToLuaExportSetting
     {
         //导出时强制做为静态类的类型(注意customTypeList 还要添加这个类型才能导出)

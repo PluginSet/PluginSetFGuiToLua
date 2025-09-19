@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace PluginSet.FGuiToLua.Editor
 {
-    [ToLuaGenerateSetting("PluginSet.FGuiToLua.LuaWrap", "FguiWraps", "com.pluginset.fguitolua", -999999, "#if FAIRYGUI_TOLUA", "#endif")]
+    [ToLuaGenerateSetting("PluginSet.FGuiToLua.LuaWrap", "Scripts/ToLuaWrapper/Fgui", "com.pluginset.fguitolua", -999999, "#if FAIRYGUI_TOLUA", "#endif")]
     public static class FGuiToLuaExportSetting
     {
         //导出时强制做为静态类的类型(注意customTypeList 还要添加这个类型才能导出)

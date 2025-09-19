@@ -6,7 +6,7 @@ using UnityEngine;
 namespace PluginSet.FGuiToLua.Editor
 {
 #if FAIRYGUI_DRAGONBONES
-    [ToLuaGenerateSetting("PluginSet.FGuiToLua.LuaWrap.DragonWrap", "FguiDragonWraps", "com.pluginset.fguitolua", -999999, "#if FAIRYGUI_TOLUA && FAIRYGUI_DRAGONBONES", "#endif")]
+    [ToLuaGenerateSetting("PluginSet.FGuiToLua.LuaWrap.DragonWrap", "Scripts/ToLuaWrapper/FguiDragon", "com.pluginset.fguitolua", -999999, "#if FAIRYGUI_TOLUA && FAIRYGUI_DRAGONBONES", "#endif")]
     public static class FGuiDragonToLuaExportSetting
     {
         //导出时强制做为静态类的类型(注意customTypeList 还要添加这个类型才能导出)

@@ -37,7 +37,7 @@ end
 
 ---@return FairyGUI.GComponent
 function UIModal:GetContent()
-    return self.m_content
+    return self.m_content or nil
 end
 
 ---OnInit 创建组件之后，界面打开之间会调用该方法，可在该方法中进行初始化操作
@@ -104,6 +104,7 @@ end
 
 function UIModal:OnDispose()
     UIModal.super.OnDispose(self)
+    self.m_content = false
     if self.m_loader and not self.m_loader.isDisposed then
         self.m_loader.url = nil
     end
