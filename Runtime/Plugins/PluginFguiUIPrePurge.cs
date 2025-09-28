@@ -26,6 +26,8 @@ namespace PluginSet.FGuiToLua
 
         public void DisposePlugin(bool isAppQuit)
         {
+            if (isAppQuit) return;
+
             UIManager.CloseAll();
             UIManager.Purge();
             UIWindow.ClearInstances();
