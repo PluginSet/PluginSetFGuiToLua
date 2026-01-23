@@ -147,8 +147,9 @@ end
 ---ShowOn
 ---@param layer PluginSet.FGUI.UILayer
 ---@param name string the name RegisterWindow used
----@return UIWindowBase
+---@return UIWindowBase|nil
 function UIManager.ShowOn(layer, name, ...)
+    if not UIManagerNative.IsValid then return end
     local info = s_windowInfos[name]
     if not info then
         --return logError("UIManager.ShowOn: no window info named {0}", name)

@@ -28,6 +28,7 @@ namespace PluginSet.FGuiToLua
         {
             if (isAppQuit) return;
 
+            UIManager.PrePurge();
             UIManager.CloseAll();
             UIManager.Purge();
             UIWindow.ClearInstances();
