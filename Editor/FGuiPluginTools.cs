@@ -28,7 +28,12 @@ namespace PluginSet.FGuiToLua.Editor
 
             var luaPath = Path.Combine(path, "Resources", "Lua");
             Global.CopyFiles(luaPath, targetPath, "*.lua");
-            Global.CopyFiles(luaPath, targetPath, "*.lua.txt");
+            Global.CopyFiles(luaPath, targetPath, "*.lua.txt", SearchOption.AllDirectories, (src, dst) =>
+            {
+                if (dst.EndsWith("lua.txt"))
+                    dst = dst.Substring(0, dst.Length - 4);
+                Global.CheckAndCopyFile(src, dst);
+            });
         }
     }
 }
