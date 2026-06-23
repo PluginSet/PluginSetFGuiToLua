@@ -134,5 +134,11 @@ namespace PluginSet.FGuiToLua.Editor
         {
 	        {typeof(PackageLuaLoader), null},
         };
+        
+        [ToLuaGenerateBlackList]
+        public static Dictionary<Type, IEnumerable<string>> blackList = new Dictionary<Type, IEnumerable<string>>
+        {
+            {typeof(TextFormat), new[] {"faceDilate", "outlineSoftness", "underlaySoftness"}},
+        };
     }
 }
